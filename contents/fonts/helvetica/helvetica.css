@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'HelveticaRegular';
+    src: url('helvetica___-webfont.eot');
+    src: url('helvetica___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('helvetica___-webfont.ttf') format('truetype'),
+         url('helvetica___-webfont.svg#HelveticaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'HelveticaBold';
+    src: url('helvetica_bold___-webfont.eot');
+    src: url('helvetica_bold___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('helvetica_bold___-webfont.ttf') format('truetype'),
+         url('helvetica_bold___-webfont.svg#HelveticaRegular') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}

@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+		<meta charset="utf-8">
+		<title>EVA</title>
+		<meta name="fb_admins_meta_tag" content="">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Play:n,b,i,bi|&amp;subset=latin">
+		<link rel="shortcut icon" href="contents/favicon.ico" type="image/png">
+		<meta http-equiv="content-language" content="en">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta property="og:title" content="example">
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="http://www.example.com">
+		<meta property="og:site_name" content="example">
+
+		<meta id="mobileViewport" name="viewport" content="minimum-scale=0.25, maximum-scale=1.2">
+		
+		<link rel="stylesheet" type="text/css" href="contents/preloader.css">
+		<link rel="stylesheet" type="text/css" href="contents/viewer.min.css">
+		<link rel="stylesheet" type="text/css" href="contents/fonts/helvetica/helvetica.css">
+		
+		<script src="scripts/jquery-1.10.2.min.js"></script>
+		
+		<style type="text/css">
+			.hwaccel {
+				-webkit-transform: translate3d(0);
+				-webkit-backface-visibility: hidden;
+				-webkit-perspective: 1000;
+			}
+			* {
+				margin: 0;
+			}
+			html, body {
+				height: 100%;
+			}
+			body {
+				font-family: Helvetica, Arial, sans-serif;
+				font-size: 12px;
+				color: rgb(46,46,46);
+				overflow: auto;
+				position: relative;
+			}
+			a img {
+				border: 0;
+			}
+			a, a:visited {
+				color: rgb(46,46,46);
+			}
+			.clear {
+				clear: both;
+			}
+			.left {
+				float: left;
+				transition: all 0 ease .5s;
+			}
+			.right {
+				float: right;
+				transition: all 0 ease .5s;
+			}
+			.wrapper {
+				width: 980px;
+				position: relative;
+				margin: 0 auto;
+				height: 100%;
+			}
+			.hide {
+				display: none!important;
+			}
+			#background {
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-image: url(contents/images/bg.png_srz_1920_722_75_22_0.50_1.20_0.00_png_srz);
+				background-size: contain;
+				background-color: rgb(229,229,229);
+				background-position: 50% 0%;
+				background-repeat: no-repeat;
+			}
+			#header {
+				position: fixed;
+				margin-top: 40px;
+				top: 0;
+				min-width: 980px;
+				width: 100%;
+				height: 95px;
+				background-color: rgb(239,175,0);
+				box-shadow: rgba(0,0,0,.7) 0px 0px 5px 0px;
+				transition: all .3s linear;
+				z-index: 999;
+			}
+			#hero {
+				position: relative;
+				float: left;
+				margin-top: 10px;
+			}
+			#hero .name {
+				font-size: 35px;
+				font-weight: bold;
+			}
+			#hero .slogan {
+				font-size: 25px;
+				line-height: 12px;
+				font-family: play, sans-serif;
+			}
+			#nav {
+				float: right;
+				margin-top: 15px;
+			}
+				.nav-btn {
+					padding: 10px 20px;
+					text-align: center;
+					background: rgb(46,46,46);
+					color: rgb(239,175,0)!important;
+					font-size: 14px;
+					font-weight: bold;
+					font-family: play,sans-serif;
+					margin: 0 1px;
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+					transition: linear all .1s;
+					box-shadow: rgba(0,0,0,1) 0px 0px 5px 0px inset;
+					white-space: nowrap;
+				}
+				.nav-btn span {
+					
+				}
+				.nav-current, .nav-btn:hover, #nav ul li .nav-btn:hover {
+					background: rgb(255,255,255);
+					color: rgb(46,46,46)!important;
+					box-shadow: rgba(0,0,0,1) 0px 0px 5px 0px;
+					
+				}
+				#nav ul {
+					top: 0;
+					padding: 38px 0 0 0;
+					list-style: none;
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+					position: absolute;
+					left: 0;
+					margin: 0;
+					visibility: hidden;
+					opacity: 0;
+					transition: all .5s ease;
+				}
+				#nav ul li {
+					margin: 1px 0;
+					float: left;
+				}
+				#nav ul li .nav-btn{
+					float: left;
+					padding: 10px 20px;
+					text-align: center;
+					background: rgb(46,46,46);
+					color: rgb(239,175,0)!important;
+					font-size: 14px;
+					font-weight: bold;
+					font-family: play,sans-serif;
+					margin: 0;
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+					transition: linear all .1s;
+					box-shadow: rgba(0,0,0,1) 0px 0px 5px 0px inset;
+					white-space: nowrap;
+				}
+				.nav-btn:hover ul {
+					visibility: visible!important;
+					opacity: 1!important;
+				}
+			#content {
+				position: relative;
+				
+				transition: all 1s ease;
+				
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 265px auto -50px;
+			}
+			#footer {
+				position: relative;
+				margin-top: 50px;
+				padding: 0 10px;
+				border-bottom: 10px solid transparent;
+				font-family: play,sans-serif;
+			}
+#footer, .push {
+	height: 50px;
+}
+			.social-icon {
+				margin: 0 1px;
+			}
+			.page-home {
+				box-shadow: transparent 0 0 0 0!important;
+				background: transparent!important;
+				padding: 60px 0 0 0!important;
+			}
+			.page-home-highlight {
+				background-color: rgb(239,175,0);
+				box-shadow: rgba(0,0,0,.7) 0px 0px 5px 0px;
+				padding: 10px 50px 10px 10px;
+				font-size: 40px;
+				font-weight: bold;
+				font-style: italic;
+				position: relative;
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+			}
+			.page-home-row {
+				position: relative;
+				margin-top: 20px;
+				width: 1002px;
+				margin-left: -22px;
+			}
+			.page-home-box {
+				background: rgb(255,255,255);
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+				position: relative;
+				width: 280px;
+				padding: 15px;
+				box-shadow: rgba(0,0,0,.7) 0px 0px 5px 0px;
+				transition: linear all .3s;
+				vertical-align: top;
+				margin-left: 22px;
+				margin-bottom: 20px;
+			}
+				/*
+				.page-home-box:nth-child(4n+1) {
+					margin-left: 0;
+				}
+				*/
+				.page-home-box:nth-child(3n+1) {
+					
+				}
+				.page-home-box:hover {
+					box-shadow: rgba(0,0,0,7) 0px 0px 15px 0px;
+					background: #000;
+					color: #eee;
+				}
+			.page-home-box-title {
+				font-size: 30px;
+				font-style: italic;
+				font-weight: bold;
+				z-index: 2;
+				position: relative;
+				line-height: 70px;
+			}
+				.page-home-box-title span {
+					vertical-align: middle;
+					position: relative;
+					line-height: normal;
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+				}
+			.page-home-box-img {
+				border: 2px rgb(93,93,93) solid;
+				box-shadow: rgba(0,0,0,.4) 0px 0px 5px 0px;
+				display: block;
+				margin: 10px auto;
+				position: relative;
+				width: 272px;
+				height: 186px;
+				z-index: 2;
+			}
+			.page-home-box-content {
+				font-family: play,sans-serif;
+				z-index: 2;
+				position: relative;
+			}
+			.shape-triangle-right {
+				width: 0;
+				height: 0;
+				border-top: 20px solid transparent;
+				border-left: 20px solid rgba(235,179,0,1);
+				border-bottom: 20px solid transparent;
+			}
+			.read-more-pointer-1 {
+				position: relative;
+				height: 44px;
+				width: 310px;
+				margin-left: -310px;
+				float: left;
+				transition: 1s all cubic-bezier(.2,1,.2,1);
+			}
+			.read-more-pointer-1:after {
+				content: "MORE";
+				color: #000;
+				float: left;
+				background: rgba(235,179,0,1);
+				display: block;
+				padding: 0 15px;
+				margin: 2px 0 0 0;
+				width: 280px;
+				line-height: 40px;
+				text-align: right;
+				font-weight: bold;
+				font-size: 14px;
+				height: 40px;
+				position: relative;
+				z-index: 1;
+			}
+			.page-home-box:hover .read-more-pointer-1 {
+				margin-left: 0px;
+				transition: 1s all cubic-bezier(.2,1,.2,1);
+			}
+			.page-home-box:hover .read-more-pointer-2 {
+				border-left: 22px solid rgba(0,0,0,.5);
+				transition-delay: 1s;
+			}
+			.read-more-pointer-container {
+				overflow: hidden;
+				position: relative;
+				width: 335px;
+				padding: 20px 0 0 0;
+				margin-left: -15px;
+				z-index: 2;
+			}
+			.read-more-pointer-2 {
+				float: left;
+				position: relative;
+				border-top: 22px solid transparent;
+				border-bottom: 22px solid transparent;
+				border-left: 22px solid transparent;
+				transition: .5s all cubic-bezier(0,1,0,1);
+				transition-delay: 0s;
+			}
+			.read-more-pointer-2:after {
+				content: "";
+				display: block;
+				position: relative;
+				width: 0;
+				height: 0;
+				margin: -20px 0 0 -22px;
+				border-top: 20px solid transparent;
+				border-left: 20px solid rgba(235,179,0,1);
+				border-bottom: 20px solid transparent;
+			}
+			.page-home-box-img-hover-container {
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 1;
+				position: absolute;
+				overflow: hidden;
+			}
+			.page-home-box-img-hover {
+				position: absolute;
+				opacity: 0;
+				display: block;
+				width: 276px;
+				height: 190px;
+				margin: -100px 0 0 -138px;
+				top: 50%;
+				left: 50%;
+				zoom: 1;
+				transition: all .3s cubic-bezier(0,0,0,1);
+				-webkit-transform: rotate(10deg);
+				-moz-transform: rotate(10deg);
+				-o-transform: rotate(10deg);
+				-ms-transform: rotate(10deg);
+				transform: rotate(10deg);
+			}
+			.page-home-box:hover .page-home-box-img-hover {
+				opacity: .2;
+				zoom: 3;
+				
+				transition: all .6s ease;
+				-webkit-transform: rotate(25deg);
+				-moz-transform: rotate(25deg);
+				-o-transform: rotate(25deg);
+				-ms-transform: rotate(25deg);
+				transform: rotate(25deg);
+			}
+			.lightbox1 {
+				width: 615px;
+				margin-right: -335px;
+				z-index: 9;
+			}
+			.lightbox2 {
+				width: 615px;
+				margin-right: -335px;
+				z-index: 9;
+			}
+			.lightbox3 {
+				width: 615px;
+				margin-left: -335px;
+				z-index: 9;
+			}
+			.stickyNav {
+				z-index: 999!important;
+				margin-top: -10px!important;
+				height: 55px!important;
+			}
+			.stickyNav .slogan {
+				opacity: 0;
+				transition: all .2s ease;
+			}
+			.pages {
+				box-shadow: rgba(0,0,0,.4) 0px 0px 5px 0px;
+				background: #fff;
+				padding: 35px 50px;
+				position: relative;
+				left: 0;
+				right: 0;
+				height: auto;
+				
+				transition: all 1s ease;
+			}
+			.page-loading {
+				background: #fff url('contents/images/gif_preloader.gif') no-repeat scroll center center;
+				width: 100%;
+				height: 100px;
+				position: relative;
+			}
+			.page-hide {
+				position: absolute;
+				visibility: hidden;
+				opacity: 0;
+				margin: 0;
+				background: transparent;
+			}
+			.page-wrought-iron-gate-img-contain1,
+			.page-wrought-iron-gate-img-contain2,
+			.page-staircase-railing-img-contain1,
+			.page-staircase-railing-img-contain2,
+			.page-awning-img-contain1,
+			.page-awning-img-contain2
+			{
+				width: 440px;
+				margin-top: 50px;
+				float: left;
+				text-align: center;
+			}
+			.page-wrought-iron-gate-img-contain1 span,
+			.page-wrought-iron-gate-img-contain2 span,
+			.page-staircase-railing-img-contain1 span,
+			.page-staircase-railing-img-contain2 span,
+			.page-awning-img-contain1 span,
+			.page-awning-img-contain2 span
+			{
+				margin: -60px auto 35px auto;
+				display: block;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			.page-wrought-iron-gate-imgs,
+			.page-staircase-railing-imgs,
+			.page-awning-imgs
+			{
+				border: 1px solid #ddd;
+				padding: 10px 10px 50px 10px;
+				margin: 20px auto;
+				width: 400px;
+				background: #fdfdfd;
+				vertical-align: top;
+				box-shadow: rgba(0,0,0,.3) 0 0 15px;
+				transition: all .5s ease;
+			}
+			.page-wrought-iron-gate-imgs:hover,
+			.page-staircase-railing-imgs:hover,
+			.page-awning-imgs:hover
+			{
+				border: 1px solid #aaa;
+				box-shadow: rgba(0,0,0,.75) 0 0 15px;
+			}
+		</style>
+		<script>
+			var app = {};
+			
+			function getParam() {
+				var search = location.hash.substring(1);
+				return !!search ? JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
+					function(key, value) {return key===""?value:decodeURIComponent(value)}):{};
+			}
+			function loadPage() {
+				if (location.origin != 'file://' && (location.href).toString().indexOf('index.html') != -1) {
+					location.href = (location.href).toString().substring(0, (location.href).toString().indexOf('index.html'));
+				}
+				//setTimeout(function () {}, 1000);
+				//var param = getParam();
+				
+				//param.view = param.view == null ? 'page-home' : param.view;
+				var param = location.hash.substring(1);
+				//console.log('p', param);
+				
+				if (!!param) {
+					param = param.substring(2);
+				} else {
+					location.hash = '!/page-home';
+					return;
+				}
+				
+				$('.pages').not('.' + param).addClass('page-hide');
+				$('.' + param).removeClass('hide');
+				setTimeout(function () {
+					$('.' + param).removeClass('page-hide');
+					$('.pages').not('.' + param).addClass('hide');
+				}, 1000);
+				$("html, body").animate({ scrollTop: "0px" }, {duration: 1000});
+				$('.nav-btn').removeClass('hide nav-current');
+				if (param == 'page-wrought-iron-gate' 
+					|| param == 'page-staircase-railing'
+					|| param == 'page-awning') {
+					$('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html());
+					$('.nav-btn-solutions').addClass('nav-current');
+					$('.nav-btn-' + param).addClass('hide');
+				} else {
+					if (param == 'page-home') {
+						$('.nav-btn-home').addClass('nav-current');
+					}
+					if (param == 'page-about') {
+						$('.nav-btn-about').addClass('nav-current');
+					}
+					if (param == 'page-contact') {
+						$('.nav-btn-contact').addClass('nav-current');
+					}
+					$('.nav-btn-solutions span').empty().append('Solutions');
+				}
+				app.int = {};
+				if (param == 'page-wrought-iron-gate')
+					sortFloatTop('page-wrought-iron-gate');
+				if (param == 'page-staircase-railing')
+					sortFloatTop('page-staircase-railing');
+				if (param == 'page-awning')
+					sortFloatTop('page-awning');
+			}
+			$(window).on('hashchange', function () {
+				loadPage();
+			});
+			function myInfinteScrollFunction() {
+				if ($(window).scrollTop() == $(window).height()) {
+					var img = $('<img>').prop('alt', '').addClass('page-wrought-iron-gate-imgs');
+				}
+			}
+			function preload(arrayOfImages, path) {
+				path || (path = '');
+				$(arrayOfImages).each(function(){
+					$('<img/>')[0].src = path + this.toString();
+					// Alternatively you could use:
+					// (new Image()).src = this;
+				});
+			}
+			$(function () {
+				loadPage();
+				
+				var ele_arr = ['#header', '.nav-btn', '.page-home-box', '.read-more-pointer-1', '.read-more-pointer-2', '.page-home-box-img-hover', '.pages'];
+				
+				for (var i = 0, ilen = ele_arr.length; i < ilen; i++) {
+					$(ele_arr[i]).addClass('hwaccel');
+				}
+				
+				var page_wrought_iron_gate_imgs1 = [
+					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.png','8.jpg','9.png','10.png',
+					'11.png','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg',
+					'21.jpg','22.jpg','23.jpg','24.jpg','25.jpg','26.jpg','27.jpg','28.jpg','29.jpg','30.jpg',
+					'31.jpg','32.jpg','33.jpg','34.jpg','35.jpg','36.jpg','37.jpg'
+				];
+				
+				for (var i = 0, ilen = page_wrought_iron_gate_imgs1.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Wrought Iron Gate').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/wrought-iron-gate/'+page_wrought_iron_gate_imgs1[i]);
+					
+					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Wrought Iron Gate'));
+					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				var page_wrought_iron_gate_imgs2 = [
+					'1.jpg','2.jpg','3.jpg','4.jpg','5.png','6.png','7.png','8.png','9.png','10.jpg',
+					'11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg',
+					'21.jpg','22.jpg','23.jpg','24.jpg'
+				];
+				
+				for (var i = 0, ilen = page_wrought_iron_gate_imgs2.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Metal Door').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/door-metal/'+page_wrought_iron_gate_imgs2[i]);
+					
+					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Metal Door'));
+					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				var page_wrought_iron_gate_imgs3 = [
+					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg'
+				];
+				
+				for (var i = 0, ilen = page_wrought_iron_gate_imgs3.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Fencing').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/fencing/'+page_wrought_iron_gate_imgs3[i]);
+					
+					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Fencing'));
+					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				var page_wrought_iron_gate_imgs4 = [
+					'1.jpg','2.jpg','3.jpg'
+				];
+				
+				for (var i = 0, ilen = page_wrought_iron_gate_imgs4.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Balcony Railing').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/balcony-railing/'+page_wrought_iron_gate_imgs4[i]);
+					
+					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Balcony Railing'));
+					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				var page_staircase_railing_imgs = [
+					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg'
+				];
+				
+				for (var i = 0, ilen = page_staircase_railing_imgs.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Staircase Railing').addClass('page-staircase-railing-imgs').prop('src', 'contents/images/staircase-railing/'+page_staircase_railing_imgs[i]);
+					
+					var box = $('<div>').addClass('page-staircase-railing-imgs-box').append(img).append($('<span>').append('Staircase Railing'));
+					$('.page-staircase-railing-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				var page_awning_imgs = [
+					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg'
+				];
+				
+				for (var i = 0, ilen = page_awning_imgs.length; i < ilen; i++) {
+					var img = $('<img>').prop('alt', 'Awning').addClass('page-awning-imgs').prop('src', 'contents/images/awning/'+page_awning_imgs[i]);
+					
+					var box = $('<div>').addClass('page-awning-imgs-box').append(img).append($('<span>').append('Awning'))
+					$('.page-awning-img-contain' + ((i % 2) + 1)).append(box);
+				}
+				
+				
+				
+				var stickyNavTop = $('#header').offset().top;
+				
+				var stickyNav = function () {
+					var scrollTop = $(window).scrollTop();
+					
+					if (scrollTop > stickyNavTop) {
+						$('#header').addClass('stickyNav');
+					} else {
+						$('#header').removeClass('stickyNav');
+					}
+				};
+				stickyNav();
+				
+				$(window).scroll(function () {
+					stickyNav();
+					//myInfinteScrollFunction();
+				});
+				
+				$('.nav-btn').click(function () {
+					if ($(this).hasClass('sub-nav')) {
+						$('.nav-btn-solutions span').empty().append($(this).html());
+						$('.sub-nav').removeClass('hide');
+						$(this).addClass('hide');
+					}
+				});
+			});
+			$(window).load(function () {
+				/*
+				var param = location.hash.substring(1);
+				//console.log('p', param);
+				
+				if (!!param) {
+					param = param.substring(2);
+				}
+				console.log(param);
+				if (param == 'page-wrought-iron-gate')
+					sortFloatTop('page-wrought-iron-gate');
+				if (param == 'page-stiarcase-railing')
+					sortFloatTop('page-staircase-railing');
+				if (param == 'page-awning')
+					sortFloatTop('page-awning');
+				//sortFloatTop('page-staircase-railing');
+				//sortFloatTop('page-awning');
+				*/
+				loadPage();
+			});
+			function sortFloatTop(name) {
+				var toRight = 0, toLeft = 0;
+				
+				app.int || (app.int = {});
+				
+				app.int[name+'-int'] = setInterval(function () {
+					if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
+						if (toRight) {
+							clearInterval(app.int[name+'-int']);
+						} else {
+							var img = $('.'+name+'-img-contain2').find('.'+name+'-imgs-box:last-child').detach();
+							if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
+								$('.'+name+'-img-contain1').append(img);
+							} else {
+								$('.'+name+'-img-contain2').append(img);
+								clearInterval(app.int[name+'-int']);
+							}
+							toLeft++;
+						}
+					} else {
+						if (toLeft) {
+							clearInterval(app.int[name+'-int']);
+						} else {
+							var img = $('.'+name+'-img-contain1').find('.'+name+'-imgs-box:last-child').detach();
+							if ($('.'+name+'-img-contain1').height() > $('.'+name+'-img-contain2').height()) {
+								$('.'+name+'-img-contain2').append(img);
+							} else {
+								$('.'+name+'-img-contain1').append(img);
+								clearInterval(app.int[name+'-int']);
+							}
+							toRight++;
+						}
+					}
+				}, 2000);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="background"></div>
+		<div id="header">
+			<div class="wrapper">
+				<div id="hero">
+					<div class="name">Kuantan Iron Work</div>
+					<div class="slogan">everything iron</div>
+				</div>
+				<div id="nav">
+					<a href="#!/page-home" class="nav-btn nav-btn-home nav-current">Home</a>
+					<!--
+					<div class="nav-btn nav-btn-services">Services</div>
+					-->
+					<div class="nav-btn nav-btn-solutions">
+						<span>Solutions</span>
+						<ul>
+							<li>
+								<a href="#!/page-wrought-iron-gate" class="nav-btn sub-nav nav-btn-page-wrought-iron-gate">Wrought Iron Gate</a>
+							</li>
+							<li>
+								<a href="#!/page-staircase-railing" class="nav-btn sub-nav nav-btn-page-staircase-railing">Staircase Railing</a>
+							</li>
+							<li>
+								<a href="#!/page-awning" class="nav-btn sub-nav nav-btn-page-awning">Awning</a>
+							</li>
+						</ul>
+					</div>
+					<a href="#!/page-about" class="nav-btn nav-btn-about">About</a>
+					<a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div id="content">
+				<div class="pages page-loading page-hide">
+				</div>
+				<div class="pages page-home page-hide">
+					<div class="page-home-highlight">Cost effective. Quality. Reliable.</div>
+					<div class="clear"></div>
+					<div class="page-home-row">
+						<a href="#!/page-wrought-iron-gate">
+							<div class="page-home-box" title="Wrought Iron Gate">
+								<div class="page-home-box-title"><span>Wrought Iron Gate</span></div>
+								<img src="contents/images/home/2.png" class="page-home-box-img" alt="" />
+								<div class="page-home-box-content">
+									By offering made to measure ironwork, we can help to ensure that your gate always stands out and enhances the external appearance of your premises. For the exterior of your home we are able to create custom wrought iron railings,wrought iron gates, balconies, fences, and any other outdoor wrought iron decoration that you can think of.
+								</div>
+								<div class="read-more-pointer-container">
+									<div class="read-more-pointer-1"></div>
+									<div class="shape-triangle-right read-more-pointer-2"></div>
+									<div class="clear"></div>
+								</div>
+								<div class="page-home-box-img-hover-container">
+									<img src="contents/images/home/2.png" class="page-home-box-img-hover" alt="" />
+								</div>
+							</div>
+						</a>
+						<a href="#!/page-staircase-railing">
+						<div class="page-home-box" title="Staircase Railing">
+							<div class="page-home-box-title"><span>Staircase Railing</span></div>
+							<img src="contents/images/home/3.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								For the interior of your home we can create custom wrought iron railings, curtain rods, iron door grille, wrought iron console tables, baker racks, iron wine cellar doors, wine racks, iron fireplace doors and screens.
+							</div>
+							<div class="read-more-pointer-container">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/3.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						</a>
+						<a href="#!/page-awning">
+							<div class="page-home-box" title="Awning">
+								<div class="page-home-box-title"><span>Awning</span></div>
+								<img src="contents/images/home/4.jpg" class="page-home-box-img" alt="" />
+								<div class="page-home-box-content">
+									We are able to offer light structural ironwork, iron awning structures, pipe railings, iron security window and door bars, cable railings, metal signs, window flower baskets, home and garden ornaments, and we can repair and restore old ironwork.
+								</div>
+								<div class="read-more-pointer-container">
+									<div class="read-more-pointer-1"></div>
+									<div class="shape-triangle-right read-more-pointer-2"></div>
+									<div class="clear"></div>
+								</div>
+								<div class="page-home-box-img-hover-container">
+									<img src="contents/images/home/4.jpg" class="page-home-box-img-hover" alt="" />
+								</div>
+							</div>
+						</a>
+						<div class="page-home-box" title="Wrought Iron">
+							<div class="page-home-box-title"><span>Wrought Iron</span></div>
+							<img src="contents/images/home/1.png" class="page-home-box-img" alt="Wrought Iron" />
+							<div class="page-home-box-content">
+								Wrought iron is commercially pure iron. In contrast to steel, it has very low carbon content. It is a fibrous material due to the slag inclusions (a normal constituent). This is also what gives it a "grain" resembling wood, which is visible when it is etched or bent to the point of failure. Wrought iron is tough, malleable, ductile and easily welded.
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/1.png" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Yellow Balau Wood">
+							<div class="page-home-box-title"><span>Yellow Balau Wood</span></div>
+							<img src="contents/images/home/5.png" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								Yellow Balau is a heavy hardwood that is native to Southeast Asia where the harvesting is strictly regulated to maintain a plentiful supply. This wood is extremely strong, durable and resistant to decay. It will weather to a silver-gray color when exposed to the elements.
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/5.png" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Evercoat">
+							<div class="page-home-box-title"><span>Evercoat</span></div>
+							<img src="contents/images/home/6.png" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								Evercoat pro-tech PT210 TX using by 2:1 combination of clearcoat and hardener.
+								<div class="clear"></div>
+								<strong>Clearcoat</strong>
+								<ul>
+									<li>
+										- Mixture of isomers 10% - 25%
+									</li>
+									<li>
+										- Aromatic solvent 2.5% - 5%
+									</li>
+								</ul>
+								<strong>2k Hardener</strong>
+								<ul>
+									<li>
+										- Aromatic solvent 10% - 25%
+									</li>
+									<li>
+										- Polysocynate 25% - 50%
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/6.png" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+
+						<div class="page-home-box" title="Finishing Paint">
+							<div class="page-home-box-title"><span>Finishing Paint</span></div>
+							<img src="contents/images/home/7.png" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								Colourland 24K Pearl Gold Finish is a premium quality, 100% full Acrylic based emulsion paint. It is specially formulated for the tropics with excellent weathering properties, fungus and algae resistant. Colourland 24K PEARL GOLD finish has excellent alkali resistant, adhesion and durability.
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/7.png" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Wood Paint">
+							<div class="page-home-box-title"><span>Wood Paint</span></div>
+							<img src="contents/images/home/8.png" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<strong>Dulux Solarscreen</strong>
+								<div class="clear"></div>
+								Dulux Solarscreen highlights the natural beauty of wood grain. It has built in UV filters to minimize cracking, peeling and flaking.
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/8.png" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Automation for Sliding Gate">
+							<div class="page-home-box-title"><span>Automation for Sliding Gate</span></div>
+							<img src="contents/images/home/9.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								We are able to offer light structural ironwork, iron awning structures, pipe railings, iron security window and door bars, cable railings, metal signs, window flower baskets, home and garden ornaments, and we can repair and restore old ironwork.
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/9.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+
+						<div class="page-home-box" title="Arm Type Actuator for Automation Gate">
+							<div class="page-home-box-title"><span>Arm Type Actuator Gate Automation</span></div>
+							<img src="contents/images/home/10.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										Folding Type and Swing Type
+									</li>
+									<li>
+										Length Extended
+									</li>
+									<li>
+										More Stablelized
+									</li>
+									<li>
+										Heavy Duty, Powerful and Elegant
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/10.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Electro Mechanical Operator For Folding & Swing Gates">
+							<div class="page-home-box-title"><span style="font-size: 20px;">Electro Mechanical Operator (Folding &amp; Swing Gates)</span></div>
+							<img src="contents/images/home/11.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										Ideal solution for swing and folding gates with leaves up to 3m.
+									</li>
+									<li>
+										Learns and stores in memory,creating a default setting for future cycles, allow for longer operator life.
+									</li>
+									<li>
+										It is the best way to automate a gate without altering its shape and design.
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/11.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Multi Function Remote Controller and Keypad">
+							<div class="page-home-box-title"><span style="font-size: 26px;">Multi Function Remote Controller and Keypad</span></div>
+							<img src="contents/images/home/12.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										<strong>Release Lock for Gate</strong> - With the newest technology that combine safety with locking system,you can easily disengaged the lock system and move the gate freely during power outages.
+									</li>
+									<li>
+										<strong>Dimension Guide to Construct : (mm)</strong>
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/12.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+
+						<div class="page-home-box" title="Silkcoat Stone">
+							<div class="page-home-box-title"><span>Silkcoat Stone</span></div>
+							<img src="contents/images/home/13.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										Silkcoat  Stone is a unique decorative coating for both exterior and interior walls.
+									</li>
+									<li>
+										The natural marble and granite used provides an excellent insulation against harsh weather conditions, is waterproof,flexible,durable,low maintenance,environmentally friendly, comes in a range of natural lively colours.
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/13.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Coating Material For Interior Walls">
+							<div class="page-home-box-title"><span>Coating Material For Interior Walls</span></div>
+							<img src="contents/images/home/14.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										A luxurious wall covering for interior walls.
+									</li>
+									<li>
+										Aesthetic appeal adds life to the interior of residential and commercial properties.
+									</li>
+									<li>
+										Improves the thermal insulation of a room which in turn reduces fuel bills, and provides a higher level of sound insulation which adds to the overall comfort and feel experience.
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/14.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+						<div class="page-home-box" title="Pebble Stone">
+							<div class="page-home-box-title"><span>Pebble Stone</span></div>
+							<img src="contents/images/home/15.jpg" class="page-home-box-img" alt="" />
+							<div class="page-home-box-content">
+								<ul style="list-style: initial;margin-left: 15px;">
+									<li>
+										A natural, maintenance free and long lasting product.
+									</li>
+									<li>
+										Very suitable for outdoor use.
+									</li>
+									<li>
+										Aesthetic appearance gives a warm and rustic feeling.
+									</li>
+									<li>
+										Excellent adhesion properties.
+									</li>
+									<li>
+										Always cool and dry.
+									</li>
+									<li>
+										High abrasion resistance.
+									</li>
+									<li>
+										Ideal flooring system for walkways, Landscape gardens, Balconies, Bathrooms, Office areas.
+									</li>
+								</ul>
+							</div>
+							<div class="read-more-pointer-container hide">
+								<div class="read-more-pointer-1"></div>
+								<div class="shape-triangle-right read-more-pointer-2"></div>
+								<div class="clear"></div>
+							</div>
+							<div class="page-home-box-img-hover-container">
+								<img src="contents/images/home/15.jpg" class="page-home-box-img-hover" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pages page-wrought-iron-gate page-hide">
+					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Wrought Iron Gate</div>
+					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+						By offering made to measure ironwork, we can help to ensure that your gate always stands out and enhances the external appearance of your premises. For the exterior of your home we are able to create custom wrought iron railings,wrought iron gates, balconies, fences, and any other outdoor wrought iron decoration that you can think of.
+					</div>
+					<div class="page-wrought-iron-gate-img-contain1"></div>
+					<div class="page-wrought-iron-gate-img-contain2"></div>
+					<div class="clear"></div>
+				</div>
+				<div class="pages page-staircase-railing page-hide">
+					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Staircase Railing</div>
+					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+						For the interior of your home we can create custom wrought iron railings, curtain rods, iron door grille, wrought iron console tables, baker racks, iron wine cellar doors, wine racks, iron fireplace doors and screens.
+					</div>
+					<div class="page-staircase-railing-img-contain1"></div>
+					<div class="page-staircase-railing-img-contain2"></div>
+					<div class="clear"></div>
+				</div>
+				<div class="pages page-awning page-hide">
+					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Awning</div>
+					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+						We are able to offer light structural ironwork, iron awning structures, pipe railings, iron security window and door bars, cable railings, metal signs, window flower baskets, home and garden ornaments, and we can repair and restore old ironwork.
+					</div>
+					<div class="page-awning-img-contain1"></div>
+					<div class="page-awning-img-contain2"></div>
+					<div class="clear"></div>
+				</div>
+				<div class="pages page-about page-hide">
+					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">About</div>
+					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+						<img src="contents/images/about/1.png" alt="" style="width:300px;margin: 0 20px 20px 0;border: 1px solid #ccc;box-shadow: rgba(0,0,0,.5) 0 0 5px;float: left;" />
+						<span>
+							Kuantan Iron Work is establish at 6th August 2003, located at no.6, Jalan IM 14/6, Kawasan Perindustrian Ringan, Sektor 3, Indera Mahkota, 25200 Kuantan, Pahang Darul Makmur. Kuantan Iron Work have specialised in creating beautiful bespoke ironwork, including stylish and functional wrought iron gates. 
+						</span>
+						<div class="clear"></div>
+						<img src="contents/images/about/2.png" alt="" style="width:300px;margin: 0 20px 20px 0;border: 1px solid #ccc;box-shadow: rgba(0,0,0,.5) 0 0 5px;float: left;" />
+						<span>
+							Approximately 20 staff is located at 4 different department namely sales & marketing, welding, painting and installation in Kuantan Iron Work. Being specialised in architectural and ornamental iron designs, gave us the opportunity over the years to work closely with many architects, home builders, remodelers, interior designers, landscapers, and many homeowners.
+						</span>
+						<div class="clear"></div>
+						<img src="contents/images/about/3.png" alt="" style="width:300px;margin: 0 20px 20px 0;border: 1px solid #ccc;box-shadow: rgba(0,0,0,.5) 0 0 5px;float: left;" />
+						<span>
+							Currently we are covering east coast area and most of our customers are satisfied and confident that our product will greatly improve their home life style. We offer a comprehensive service from consultation and design, through to manufacture and installation. We also provide a complete maintenance and service program, suitable for anyone with automated gates.
+						</span>
+						<div class="clear"></div>
+					</div>
+					<!--
+					<div class="page-awning-img-contain1"></div>
+					<div class="page-awning-img-contain2"></div>
+					-->
+					<div class="clear"></div>
+				</div>
+				<div class="pages page-contact page-hide">
+					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Contact</div>
+					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+						<iframe style="margin: 0 auto 30px auto;display: block;width: 800px;" width="800" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=&amp;daddr=Jalan+Teluk+Sisek&amp;hl=en&amp;geocode=FY41OgAdVsQoBg&amp;sll=3.813889,103.334398&amp;sspn=0.006851,0.009645&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=3.81497,103.333797&amp;spn=0.003747,0.008583&amp;z=17&amp;output=embed"></iframe>
+						<!--
+						<br />
+						<small>
+							<a target="_blank" href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=&amp;daddr=Jalan+Teluk+Sisek&amp;hl=en&amp;geocode=FY41OgAdVsQoBg&amp;sll=3.813889,103.334398&amp;sspn=0.006851,0.009645&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=3.81497,103.333797&amp;spn=0.003747,0.008583&amp;z=17" style="color:#0000FF;text-align:left">
+								View Larger Map
+							</a>
+						</small>
+						-->
+						<div style="width:600px;margin: 0 auto;">
+							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+								Address
+							</div>
+							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+								A2596, Ground Floor, Jalan Teluk Sisek, Taman Ruby, 25000, Kuantan, Pahang
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div style="width:600px;margin: 0 auto;">
+							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+								Tel
+							</div>
+							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+								+609-568 3928
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div style="width:600px;margin: 0 auto;">
+							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+								Fax
+							</div>
+							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+								+609-568 3928
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div style="width:600px;margin: 0 auto;">
+							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+								Mobile Phone
+							</div>
+							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+								+6013-986 1118
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div style="width:600px;margin: 0 auto;">
+							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+								Email
+							</div>
+							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+								<a href="mailto:kuantanironwork@hotmail.com">kuantanironwork@hotmail.com</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+				<div class="push"></div>
+			</div>
+			<div class="clear"></div>
+			<div id="footer">
+				<div class="left">
+					&copy; 2013 Kuantan Iron Work
+				</div>
+				<div class="right">
+					<a href="https://www.facebook.com/pages/Kuantan-iron-work-09-568-3928/197578343733478?id=197578343733478&sk=app_442217585812642" target="_blank"><img src="contents/images/8d2c2a4846503b9067e2fd2f590445c2.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
+					<!--
+					<a href="http://www.twitter.com" target="_blank"><img src="contents/images/fe7017590fbd384c7502a64601c7b444.png_srz_24_24_85_22_0.50_1.20_0.00_png_srz" alt="Facebook" class="social-icon" /></a>
+					<a href="http://www.google.com" target="_blank"><img src="contents/images/b67d062dc57b4fbce6342c776b8becb0.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
+					-->
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>
