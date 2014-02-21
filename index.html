@@ -59,7 +59,7 @@
 				transition: all 0 ease .5s;
 			}
 			.wrapper {
-				width: 980px;
+				width: 1100px;
 				position: relative;
 				margin: 0 auto;
 				height: 100%;
@@ -491,6 +491,15 @@ margin: 265px auto -50px;
 				border: 1px solid #aaa;
 				box-shadow: rgba(0,0,0,.75) 0 0 15px;
 			}
+      .logo {
+        float: left;
+        margin-top: 10px;
+        height: 60px;
+        transition: all .5s ease;
+      }
+      .logo-small {
+        height: 40px;
+      }
 		</style>
 		<script>
 			var app = {};
@@ -689,8 +698,10 @@ margin: 265px auto -50px;
 					
 					if (scrollTop > stickyNavTop) {
 						$('#header').addClass('stickyNav');
+						$('.logo').addClass('logo-small');
 					} else {
 						$('#header').removeClass('stickyNav');
+						$('.logo').removeClass('logo-small');
 					}
 				};
 				stickyNav();
@@ -769,6 +780,7 @@ margin: 265px auto -50px;
 		<div id="background"></div>
 		<div id="header">
 			<div class="wrapper">
+        <img src="contents/images/KIW.png" class="logo">
 				<div id="hero">
 					<div class="name">KUANTAN IRON WORK</div>
 					<div class="slogan">SPECIALIZED IN WROUGHT IRON</div>
