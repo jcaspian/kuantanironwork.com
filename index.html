@@ -52,11 +52,11 @@
 			}
 			.left {
 				float: left;
-				transition: all 0 ease .5s;
+				
 			}
 			.right {
 				float: right;
-				transition: all 0 ease .5s;
+				
 			}
 			.wrapper {
 				width: 1100px;
@@ -137,6 +137,13 @@
 					box-shadow: rgba(0,0,0,1) 0px 0px 5px 0px;
 					
 				}
+        .nav-btn-solutions span {
+          max-width: 140px;
+          text-overflow: ellipsis;
+          display: inline-block;
+          overflow: hidden;
+          margin: -5px;
+        }
 				#nav ul {
 					top: 0;
 					padding: 38px 0 0 0;
@@ -180,7 +187,7 @@
 			#content {
 				position: relative;
 				
-				transition: all 1s ease;
+				
 				
 min-height: 100%;
 height: auto !important;
@@ -373,7 +380,7 @@ margin: 265px auto -50px;
 			}
 			.page-home-box-img-hover {
 				position: absolute;
-				opacity: 0;
+				opacity: 0.01;
 				display: block;
 				width: 276px;
 				height: 190px;
@@ -381,7 +388,7 @@ margin: 265px auto -50px;
 				top: 50%;
 				left: 50%;
 				zoom: 1;
-				transition: all .3s cubic-bezier(0,0,0,1);
+				
 				-webkit-transform: rotate(10deg);
 				-moz-transform: rotate(10deg);
 				-o-transform: rotate(10deg);
@@ -390,8 +397,7 @@ margin: 265px auto -50px;
 			}
 			.page-home-box:hover .page-home-box-img-hover {
 				opacity: .2;
-				zoom: 3;
-				
+        zoom: 3;
 				transition: all .6s ease;
 				-webkit-transform: rotate(25deg);
 				-moz-transform: rotate(25deg);
@@ -447,43 +453,23 @@ margin: 265px auto -50px;
 				margin: 0;
 				background: transparent;
 			}
-			.page-wrought-iron-gate-img-contain1,
-			.page-wrought-iron-gate-img-contain2,
-			.page-staircase-railing-img-contain1,
-			.page-staircase-railing-img-contain2,
-			.page-grills-img-contain1,
-			.page-grills-img-contain2,
-      .page-fences-img-contain1,
-			.page-fences-img-contain2,
-      .page-sub-contractors-img-contain1,
-			.page-sub-contractors-img-contain2
+      .page-img-contain1,
+			.page-img-contain2
 			{
 				width: 500px;
 				margin-top: 50px;
 				float: left;
 				text-align: center;
 			}
-			.page-wrought-iron-gate-img-contain1 span,
-			.page-wrought-iron-gate-img-contain2 span,
-			.page-staircase-railing-img-contain1 span,
-			.page-staircase-railing-img-contain2 span,
-			.page-grills-img-contain1 span,
-			.page-grills-img-contain2 span,
-      .page-fences-img-contain1 span,
-			.page-fences-img-contain2 span,
-      .page-sub-contractors-img-contain1 span,
-      .page-sub-contractors-img-contain2 span
+      .page-img-contain1 span,
+      .page-img-contain2 span
 			{
 				margin: -60px auto 35px auto;
 				display: block;
 				font-size: 20px;
 				font-weight: bold;
 			}
-			.page-wrought-iron-gate-imgs,
-			.page-staircase-railing-imgs,
-			.page-grills-imgs,
-			.page-fences-imgs,
-			.page-sub-contractors-imgs
+      .page-imgs
 			{
 				border: 1px solid #ddd;
 				padding: 10px 10px 50px 10px;
@@ -494,11 +480,7 @@ margin: 265px auto -50px;
 				box-shadow: rgba(0,0,0,.3) 0 0 15px;
 				transition: all .5s ease;
 			}
-			.page-wrought-iron-gate-imgs:hover,
-			.page-staircase-railing-imgs:hover,
-			.page-grills-imgs:hover,
-			.page-fences-imgs:hover,
-      .page-sub-contractors-imgs:hover
+      .page-imgs:hover
 			{
 				border: 1px solid #aaa;
 				box-shadow: rgba(0,0,0,.75) 0 0 15px;
@@ -518,6 +500,169 @@ margin: 265px auto -50px;
 		</style>
 		<script>
 			var app = {};
+      
+      app.facebook = {
+        pageId: 280977682069798,
+        gallery: {
+          albums: [],
+          skipAlbum: ['280978512069715','280980868736146'],
+          sortByCreatedTimeAscending: function (a, b) {
+            if (a.created_time < b.created_time)
+              return -1;
+            if (a.created_time > b.created_time)
+              return 1;
+            return 0;
+          },
+          getAlbums: function () {
+            //console.log('getAlbums');
+            $.get(
+              ['https://graph.facebook.com',app.facebook.pageId,'albums'].join('/'),
+              {limit:100},
+              function onGetAlbums(response) {
+                
+                for (var i = 0; i < response.data.length; i++) {
+                  if (app.facebook.gallery.skipAlbum.indexOf(response.data[i].id) != -1) {
+                    response.data.splice(response.data.indexOf(response.data[i].id), 1);
+                    i = 0;
+                  }
+                }
+                
+                app.facebook.gallery.albums = response.data.sort(app.facebook.gallery.sortByCreatedTimeAscending);
+                app.facebook.gallery.getPhotos();
+              }
+            );
+          },
+          getPhotos: function (albumId) {
+            //console.log('getPhotos');
+            if (this.albums.length == 0) {
+              loadPage();
+              return;
+            }
+            for (var i = 0, ilen = this.albums.length; i < ilen; i++) {
+              var album = this.albums[i];
+              
+              if (
+                  albumId != null
+                  && albumId != undefined
+                  && albumId != album.id
+                ) {
+                for (var j = 0; j < ilen; j++) {
+                  if (this.albums[j].id == albumId) {
+                    album = this.albums[j];
+                  }
+                }
+                ajaxGetPhotos(album);
+                break;
+              }
+              ajaxGetPhotos(album);
+            }
+            function ajaxGetPhotos(album) {
+              $.get(
+                ['https://graph.facebook.com',album.id,'photos'].join('/'),
+                {limit:100},
+                function onGetPhotos(response) {
+                  album.photos = response.data.sort(app.facebook.gallery.sortByCreatedTimeAscending) || [];
+                  app.facebook.gallery.bindData();
+                }
+              );
+            }
+          },
+          bindData: function () {
+            //console.log('bindData');
+            if ($.active > 1) {
+              return;
+            }
+            var navUl = $('.fbalbums-menu-solutions');
+            var navParent = navUl.parent();
+            navUl = navUl.detach();
+            
+            var contentDiv = $('#content');
+            var contentParent = contentDiv.parent();
+            contentDiv = contentDiv.detach();
+            
+            for (var i = 0, ilen = this.albums.length; i < ilen; i++) {
+              // Navigation > Solutions = Albums
+              var album = this.albums[i];
+              var classSubname = (album.name).toLowerCase().replace(/ /g, '-');
+              var navLi = $('<li>');
+              var navA = $('<a>')
+                .append(album.name)
+                .prop('href', ['#!/page-', classSubname].join(''))
+                .addClass(
+                ['nav-btn sub-nav nav-btn-page-', classSubname].join('')
+              );
+              var navUlNames = navUl.data('solutions') || [];
+              navUlNames.push('page-' + classSubname);
+              navUl.append(
+                navLi.append(navA)
+              ).data('solutions', navUlNames);
+              //console.log('navUlNames', navUlNames);
+              // Page Album > Album
+              /*
+              <div class="pages page-wrought-iron-gate page-hide">
+                <div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Wrought Iron Gate</div>
+                <div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
+                  By offering made to measure ironwork, we can help to ensure that your gate always stands out and enhances the external appearance of your premises. For the exterior of your home we are able to create custom wrought iron railings,wrought iron gates, balconies, fences, and any other outdoor wrought iron decoration that you can think of.
+                </div>
+                <div class="page-wrought-iron-gate-img-contain1"></div>
+                <div class="page-wrought-iron-gate-img-contain2"></div>
+                <div class="clear"></div>
+              </div>
+              */
+              var div = $('<div>');
+              var contentPages = div.clone().addClass(['pages page-hide page-', classSubname].join(''));
+              var contentPageTitle = div.clone().css({
+                'font': 'normal normal bold 42px/1.1em arial, helvetica, sans-serif'
+              }).append(album.name);
+              var contentPageDescription = div.clone().css({
+                'font': 'normal normal normal 16px/1.3em play, sans-serif',
+                'text-align': 'justify',
+                'padding-top': '40px'
+              }).append(album.description);
+              var contentPageImgContain1 = div.clone().addClass('page-img-contain1 page-' + classSubname + '-img-contain1');
+              var contentPageImgContain2 = div.clone().addClass('page-img-contain2 page-' + classSubname + '-img-contain2');
+              var contentPageClear = div.clone().addClass('clear');
+              
+              //for (var j = 0, jlen = album.photos; j > jlen; j++) {
+              for (var j = 0, jlen = album.photos.length; j < jlen; j++) {
+                var photo = album.photos[j];
+                var photoBox = $('<a>').prop('href', 'https://www.facebook.com/photo.php?fbid=' + photo.id).prop('target', '_blank').addClass('page-imgs-box page-' + classSubname + '-imgs-box');
+                //var photoLink = $('<a>').prop('href', 'https://www.facebook.com/photo.php?fbid=' + photo.id).prop('target', '_blank');
+                var img = $('<img>').addClass('page-imgs').prop('alt', photo.name || classSubname).prop('src', photo.source);
+                var span = $('<span>').append(photo.name || classSubname);
+                
+                if (j % 2 == 0) {
+                  contentPageImgContain1.append(
+                    photoBox.append(img).append(span)
+                  );
+                } else {
+                  contentPageImgContain2.append(
+                    photoBox.append(img).append(span)
+                  );
+                }
+              }
+              
+              contentDiv.prepend(
+                contentPages
+                  .append(contentPageTitle)
+                  .append(contentPageDescription)
+                  .append(contentPageImgContain1)
+                  .append(contentPageImgContain2)
+                  .append(contentPageClear)
+              );
+            }
+            navParent.append(navUl);
+            contentParent.prepend(contentDiv);
+            loadPage();
+          },
+          init: function (pageId) {
+            if (pageId != null && pageId != undefined) {
+              app.facebook.pageId = pageId;
+            }
+            this.getAlbums();
+          }
+        }
+      };
 			
 			function getParam() {
 				var search = location.hash.substring(1);
@@ -528,12 +673,7 @@ margin: 265px auto -50px;
 				if (location.origin != 'file://' && (location.href).toString().indexOf('index.html') != -1) {
 					location.href = (location.href).toString().substring(0, (location.href).toString().indexOf('index.html'));
 				}
-				//setTimeout(function () {}, 1000);
-				//var param = getParam();
-				
-				//param.view = param.view == null ? 'page-home' : param.view;
 				var param = location.hash.substring(1);
-				//console.log('p', param);
 				
 				if (!!param) {
 					param = param.substring(2);
@@ -550,6 +690,7 @@ margin: 265px auto -50px;
 				}, 1000);
 				$("html, body").animate({ scrollTop: "0px" }, {duration: 1000});
 				$('.nav-btn').removeClass('hide nav-current');
+        /*
 				if (param == 'page-wrought-iron-gate' 
 					|| param == 'page-staircase-railing'
 					|| param == 'page-grills'
@@ -573,7 +714,34 @@ margin: 265px auto -50px;
 					}
 					$('.nav-btn-solutions span').empty().append('Solutions');
 				}
+        */
+        //console.log(solutions instanceof Array);
+        var navUl = $('.fbalbums-menu-solutions');
+        var solutions = navUl.data('solutions');
+        
+        if (solutions instanceof Array) {
+          if (solutions.indexOf(param) != -1) {
+            $('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html());
+            $('.nav-btn-solutions').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
+            $('.nav-btn-' + param).addClass('hide');
+          } else {
+            if (param == 'page-home') {
+              $('.nav-btn-home').addClass('nav-current');
+            }
+            if (param == 'page-other-services') {
+              $('.nav-btn-other-services').addClass('nav-current');
+            }
+            if (param == 'page-about') {
+              $('.nav-btn-about').addClass('nav-current');
+            }
+            if (param == 'page-contact') {
+              $('.nav-btn-contact').addClass('nav-current');
+            }
+            $('.nav-btn-solutions span').empty().append('Solutions');
+          }
+        }
 				app.int = {};
+        /*
 				if (param == 'page-wrought-iron-gate')
 					sortFloatTop('page-wrought-iron-gate');
 				if (param == 'page-staircase-railing')
@@ -584,6 +752,8 @@ margin: 265px auto -50px;
 					sortFloatTop('page-fences');
         if (param == 'page-sub-contractors')
 					sortFloatTop('page-sub-contractors');
+        */
+        sortFloatTop(param);
 			}
 			$(window).on('hashchange', function () {
 				loadPage();
@@ -602,14 +772,16 @@ margin: 265px auto -50px;
 				});
 			}
 			$(function () {
-				loadPage();
+        // Facebook Gallery
+        app.facebook.gallery.init();
+				//loadPage();
 				
 				var ele_arr = ['#header', '.nav-btn', '.page-home-box', '.read-more-pointer-1', '.read-more-pointer-2', '.page-home-box-img-hover', '.pages'];
 				
 				for (var i = 0, ilen = ele_arr.length; i < ilen; i++) {
 					$(ele_arr[i]).addClass('hwaccel');
 				}
-				
+				/*
 				var page_wrought_iron_gate_imgs1 = [
 					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.png','8.jpg','9.png','10.png',
 					'11.png','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg',
@@ -705,8 +877,8 @@ margin: 265px auto -50px;
 				}
 				
 				
-				
-				var stickyNavTop = $('#header').offset().top;
+				*/
+				var stickyNavTop = 40;//$('#header').offset().top;
 				
 				var stickyNav = function () {
 					var scrollTop = $(window).scrollTop();
@@ -752,42 +924,57 @@ margin: 265px auto -50px;
 				//sortFloatTop('page-staircase-railing');
 				//sortFloatTop('page-awning');
 				*/
-				loadPage();
+				//loadPage();
 			});
 			function sortFloatTop(name) {
+        //console.log('sortFloatTop', name);
 				var toRight = 0, toLeft = 0;
 				
 				app.int || (app.int = {});
 				
 				app.int[name+'-int'] = setInterval(function () {
+          //console.log($('.'+name+'-img-contain1').height() +', '+ $('.'+name+'-img-contain2').height());
 					if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
-						if (toRight) {
+						if (toRight > 0) {
 							clearInterval(app.int[name+'-int']);
 						} else {
 							var img = $('.'+name+'-img-contain2').find('.'+name+'-imgs-box:last-child').detach();
+              //console.log($('.'+name+'-img-contain1').height() +', '+ $('.'+name+'-img-contain2').height());
+              if (
+                $('.'+name+'-img-contain1').height() == 0
+                || $('.'+name+'-img-contain2').height() == 0
+              ) {
+                $('.'+name+'-img-contain1').append(img);
+                return;
+              }
 							if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
 								$('.'+name+'-img-contain1').append(img);
 							} else {
 								$('.'+name+'-img-contain2').append(img);
-								clearInterval(app.int[name+'-int']);
+                toRight++;
 							}
-							toLeft++;
 						}
 					} else {
-						if (toLeft) {
+						if (toLeft > 0) {
 							clearInterval(app.int[name+'-int']);
 						} else {
 							var img = $('.'+name+'-img-contain1').find('.'+name+'-imgs-box:last-child').detach();
+              if (
+                $('.'+name+'-img-contain1').height() == 0
+                || $('.'+name+'-img-contain2').height() == 0
+              ) {
+                $('.'+name+'-img-contain2').append(img);
+                return;
+              }
 							if ($('.'+name+'-img-contain1').height() > $('.'+name+'-img-contain2').height()) {
 								$('.'+name+'-img-contain2').append(img);
 							} else {
 								$('.'+name+'-img-contain1').append(img);
-								clearInterval(app.int[name+'-int']);
+                toLeft++;
 							}
-							toRight++;
 						}
 					}
-				}, 2000);
+				}, 1000);
 			}
 		</script>
 	</head>
@@ -807,7 +994,8 @@ margin: 265px auto -50px;
 					-->
 					<div class="nav-btn nav-btn-solutions">
 						<span>Solutions</span>
-						<ul>
+						<ul class="fbalbums-menu-solutions">
+            <!--
 							<li>
 								<a href="#!/page-wrought-iron-gate" class="nav-btn sub-nav nav-btn-page-wrought-iron-gate">Wrought Iron Gate</a>
 							</li>
@@ -823,6 +1011,7 @@ margin: 265px auto -50px;
               <li>
 								<a href="#!/page-sub-contractors" class="nav-btn sub-nav nav-btn-page-sub-contractors">Sub Contractors</a>
 							</li>
+              -->
 						</ul>
 					</div>
 					<a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a>
@@ -910,6 +1099,7 @@ margin: 265px auto -50px;
 						</a>
 					</div>
 				</div>
+        <!--
 				<div class="pages page-wrought-iron-gate page-hide">
 					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Wrought Iron Gate</div>
 					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
@@ -931,7 +1121,6 @@ margin: 265px auto -50px;
 				<div class="pages page-grills page-hide">
 					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Grills</div>
 					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
-						<!-- Grills Description -->
 					</div>
 					<div class="page-grills-img-contain1"></div>
 					<div class="page-grills-img-contain2"></div>
@@ -940,7 +1129,6 @@ margin: 265px auto -50px;
         <div class="pages page-fences page-hide">
 					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Fences</div>
 					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
-						<!-- Fences Description -->
 					</div>
 					<div class="page-fences-img-contain1"></div>
 					<div class="page-fences-img-contain2"></div>
@@ -955,6 +1143,7 @@ margin: 265px auto -50px;
 					<div class="page-sub-contractors-img-contain2"></div>
 					<div class="clear"></div>
 				</div>
+        -->
         <div class="pages page-other-services page-hide">
 					<div class="page-home-highlight">Quality Awning &amp; Auto System</div>
 					<div class="clear"></div>
