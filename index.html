@@ -523,7 +523,7 @@ margin: 265px auto -50px;
                 for (var i = 0; i < response.data.length; i++) {
                   if (app.facebook.gallery.skipAlbum.indexOf(response.data[i].id) != -1) {
                     response.data.splice(response.data.indexOf(response.data[i].id), 1);
-                    i = 0;
+                    i--;
                   }
                 }
                 console.log(response);
