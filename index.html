@@ -519,14 +519,14 @@ margin: 265px auto -50px;
               ['https://graph.facebook.com',app.facebook.pageId,'albums'].join('/'),
               {limit:100},
               function onGetAlbums(response) {
-                
+                console.log(response);
                 for (var i = 0; i < response.data.length; i++) {
                   if (app.facebook.gallery.skipAlbum.indexOf(response.data[i].id) != -1) {
                     response.data.splice(response.data.indexOf(response.data[i].id), 1);
                     i = 0;
                   }
                 }
-                
+                console.log(response);
                 app.facebook.gallery.albums = response.data.sort(app.facebook.gallery.sortByCreatedTimeAscending);
                 app.facebook.gallery.getPhotos();
               }
