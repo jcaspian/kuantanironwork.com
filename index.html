@@ -521,10 +521,12 @@ margin: 265px auto -50px;
               function onGetAlbums(response) {
                 for (var i = 0; i < response.data.length; i++) {
                   console.log(i);
-                  if (app.facebook.gallery.skipAlbum.indexOf(response.data[i].id) != -1) {
-                    console.log('before', response.data);
+                  if ((app.facebook.gallery.skipAlbum).indexOf(response.data[i].id) >= 0) {
+                    console.log('before');
+                    console.log(response.data);
                     response.data.splice(response.data.indexOf(response.data[i].id), 1);
-                    console.log('after', response.data);
+                    console.log('after');
+                    console.log(response.data);
                     i -= 1;
                   }
                 }
