@@ -494,6 +494,16 @@ margin: 265px auto -50px;
       .page-home-box-2x2 {
         width: 505px;
       }
+      .contact-facebook-button {
+        position: absolute;
+        right: -30px;
+        top: 50%;
+        margin-top: -28px;
+        transition: all .5s ease;
+      }
+      .contact-facebook-button-small {
+        margin-top: -8px;
+      }
 		</style>
 		<script>
 			var app = {};
@@ -886,9 +896,11 @@ margin: 265px auto -50px;
 					if (scrollTop > stickyNavTop) {
 						$('#header').addClass('stickyNav');
 						$('.logo').addClass('logo-small');
+						$('.contact-facebook-button').addClass('contact-facebook-button-small');
 					} else {
 						$('#header').removeClass('stickyNav');
 						$('.logo').removeClass('logo-small');
+            $('.contact-facebook-button').removeClass('contact-facebook-button-small');
 					}
 				};
 				stickyNav();
@@ -1019,6 +1031,7 @@ margin: 265px auto -50px;
 					<a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a>
 					<a href="#!/page-about" class="nav-btn nav-btn-about">About</a>
 					<a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a>
+          <a href="https://www.facebook.com/pages/Kuantan-Iron-Work/280977682069798" target="_blank" class="contact-facebook-button" title="Facebook"><img src="contents/images/8d2c2a4846503b9067e2fd2f590445c2.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -1496,7 +1509,7 @@ margin: 265px auto -50px;
 				<div class="push"></div>
 			</div>
 			<div class="clear"></div>
-			<div id="footer">
+			<div id="footer" class="hide">
 				<div class="left">
           <!--
 					&copy; 2013 Kuantan Iron Work
