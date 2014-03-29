@@ -516,15 +516,18 @@ margin: 265px auto -50px;
               ['https://graph.facebook.com',app.facebook.pageId,'albums'].join('/'),
               {limit:100},
               function onGetAlbums(response) {
+                var albums = response.data;
                 
-                for (var i = 0; i < response.data.length; i++) {
-                  if (app.facebook.gallery.skipAlbum.indexOf(response.data[i].id) != -1) {
-                    response.data.splice(response.data.indexOf(response.data[i].id), 1);
-                    i = 0;
+                for (var i = 0; i < albums.length; i++) {
+                  var album = albums[i];
+                  if (app.facebook.gallery.skipAlbum.indexOf(album.id) != -1) {
+                    console.log('skip', album.name);
+                    albums.splice(i, 1);
+                    i--;
                   }
                 }
-                
-                app.facebook.gallery.albums = response.data.sort(app.facebook.gallery.sortByCreatedTimeAscending);
+                console.log(albums);
+                app.facebook.gallery.albums = albums.sort(app.facebook.gallery.sortByCreatedTimeAscending);
                 app.facebook.gallery.getPhotos();
               }
             );
@@ -925,14 +928,14 @@ margin: 265px auto -50px;
 			});
 			function sortFloatTop(name) {
         //console.log('sortFloatTop', name);
-				var toRight = 0, toLeft = 0;
+				var toRight = 0, toLeft = 0, move = 0, moveLimit = 2;
 				
 				app.int || (app.int = {});
 				
 				app.int[name+'-int'] = setInterval(function () {
           //console.log($('.'+name+'-img-contain1').height() +', '+ $('.'+name+'-img-contain2').height());
-					if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
-						if (toRight > 0) {
+					if ($('.'+name+'-img-contain1').height() < $('.'+name+'-img-contain2').height()) {
+						if (toRight > 0 || move >= moveLimit) {
 							clearInterval(app.int[name+'-int']);
 						} else {
 							var img = $('.'+name+'-img-contain2').find('.'+name+'-imgs-box:last-child').detach();
@@ -942,9 +945,10 @@ margin: 265px auto -50px;
                 || $('.'+name+'-img-contain2').height() == 0
               ) {
                 $('.'+name+'-img-contain1').append(img);
+                move++;
                 return;
               }
-							if ($('.'+name+'-img-contain1').height() <= $('.'+name+'-img-contain2').height()) {
+							if ($('.'+name+'-img-contain1').height() < $('.'+name+'-img-contain2').height()) {
 								$('.'+name+'-img-contain1').append(img);
 							} else {
 								$('.'+name+'-img-contain2').append(img);
@@ -952,7 +956,7 @@ margin: 265px auto -50px;
 							}
 						}
 					} else {
-						if (toLeft > 0) {
+						if (toLeft > 0 || move >= moveLimit) {
 							clearInterval(app.int[name+'-int']);
 						} else {
 							var img = $('.'+name+'-img-contain1').find('.'+name+'-imgs-box:last-child').detach();
@@ -961,6 +965,7 @@ margin: 265px auto -50px;
                 || $('.'+name+'-img-contain2').height() == 0
               ) {
                 $('.'+name+'-img-contain2').append(img);
+                move++;
                 return;
               }
 							if ($('.'+name+'-img-contain1').height() > $('.'+name+'-img-contain2').height()) {
