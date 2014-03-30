@@ -571,7 +571,7 @@ margin: 265px auto -50px;
                 ['https://graph.facebook.com',album.id,'photos'].join('/'),
                 {limit:100},
                 function onGetPhotos(response) {
-                  album.photos = response.data.sort(app.facebook.gallery.sortByCreatedTimeAscending) || [];
+                  album.photos = response.data;//.sort(app.facebook.gallery.sortByCreatedTimeAscending) || [];
                   app.facebook.gallery.bindData();
                 }
               );
