@@ -763,7 +763,8 @@ margin: 265px auto -50px;
         if (param == 'page-sub-contractors')
 					sortFloatTop('page-sub-contractors');
         */
-        sortFloatTop(param);
+        app.param = param;
+        //sortFloatTop(param);
 			}
 			$(window).on('hashchange', function () {
 				loadPage();
@@ -937,6 +938,7 @@ margin: 265px auto -50px;
 				//sortFloatTop('page-awning');
 				*/
 				//loadPage();
+        sortFloatTop(param);
 			});
 			function sortFloatTop(name) {
         //console.log('sortFloatTop', name);
