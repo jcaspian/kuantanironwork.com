@@ -97,21 +97,30 @@
 			#hero {
 				position: relative;
 				float: left;
-				margin-top: 10px;
+				margin-top: 23px;
 			}
 			#hero .name {
-				font-size: 35px;
+				font-size: 25px;
 				font-weight: bold;
 			}
 			#hero .slogan {
-				font-size: 25px;
+				font-size: 18.5px;
 				line-height: 12px;
 				font-family: play, sans-serif;
 			}
+      .stickyNav #hero {
+        margin-top: 17px;
+      }
 			#nav {
 				float: right;
-				margin-top: 15px;
+				margin-top: 30px;
 			}
+      .stickyNav #nav {
+        margin-top: 15px;
+      }
+      .stickyNav .social-icon {
+        margin: 0 1px;
+      }
 				.nav-btn {
 					padding: 10px 20px;
 					text-align: center;
@@ -120,7 +129,7 @@
 					font-size: 14px;
 					font-weight: bold;
 					font-family: play,sans-serif;
-					margin: 0 1px;
+					margin: 0 2px;
 					display: inline-block;
 					*display: inline;
 					zoom: 1;
@@ -205,7 +214,7 @@ margin: 265px auto -50px;
 	height: 50px;
 }
 			.social-icon {
-				margin: 0 1px;
+				margin: 15px 1px 0;
 			}
 			.page-home,
 			.page-other-services {
@@ -484,12 +493,13 @@ margin: 265px auto -50px;
 			}
       .logo {
         float: left;
-        margin-top: 10px;
+        margin-top: 17px;
         height: 60px;
         transition: all .5s ease;
       }
       .logo-small {
         height: 40px;
+        margin-top: 12px;
       }
       .page-home-box-2x2 {
         width: 505px;
@@ -512,7 +522,10 @@ margin: 265px auto -50px;
         pageId: 280977682069798,
         gallery: {
           albums: [],
-          skipAlbum: ['280978512069715','280980868736146'],
+          skipAlbum: [
+            '280978512069715',  // Profile Pictures
+            '280980868736146',  // Cover Photos
+          ],
           sortByCreatedTimeAscending: function (a, b) {
             if (a.created_time < b.created_time)
               return -1;
@@ -578,6 +591,9 @@ margin: 265px auto -50px;
             }
           },
           bindData: function () {
+            var tabs = [
+              '281910551976511',  // Our Products
+            ];
             //console.log('bindData');
             if ($.active > 1) {
               return;
@@ -602,23 +618,18 @@ margin: 265px auto -50px;
                 ['nav-btn sub-nav nav-btn-page-', classSubname].join('')
               );
               var navUlNames = navUl.data('solutions') || [];
-              navUlNames.push('page-' + classSubname);
-              navUl.append(
-                navLi.append(navA)
-              ).data('solutions', navUlNames);
-              //console.log('navUlNames', navUlNames);
-              // Page Album > Album
-              /*
-              <div class="pages page-wrought-iron-gate page-hide">
-                <div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Wrought Iron Gate</div>
-                <div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
-                  By offering made to measure ironwork, we can help to ensure that your gate always stands out and enhances the external appearance of your premises. For the exterior of your home we are able to create custom wrought iron railings,wrought iron gates, balconies, fences, and any other outdoor wrought iron decoration that you can think of.
-                </div>
-                <div class="page-wrought-iron-gate-img-contain1"></div>
-                <div class="page-wrought-iron-gate-img-contain2"></div>
-                <div class="clear"></div>
-              </div>
-              */
+              
+              if (tabs.indexOf(album.id) == -1) {
+                navUlNames.push('page-' + classSubname);
+                navUl.append(
+                  navLi.append(navA)
+                ).data('solutions', navUlNames);
+              } else {
+                var tabA = $('<a>').prop('href', '#!/page-' + classSubname).addClass('nav-btn nav-btn-our-products').append(album.name);
+                //$('#nav').append(tabA);
+                tabA.insertAfter($('.nav-btn-solutions'));
+              }
+              
               var div = $('<div>');
               var contentPages = div.clone().addClass(['pages page-hide page-', classSubname].join(''));
               var contentPageTitle = div.clone().css({
@@ -737,6 +748,9 @@ margin: 265px auto -50px;
           } else {
             if (param == 'page-home') {
               $('.nav-btn-home').addClass('nav-current');
+            }
+            if (param == 'page-our-products') {
+              $('.nav-btn-our-products').addClass('nav-current');
             }
             if (param == 'page-other-services') {
               $('.nav-btn-other-services').addClass('nav-current');
@@ -1004,11 +1018,8 @@ margin: 265px auto -50px;
 					<div class="slogan">SPECIALIZED IN WROUGHT IRON</div>
 				</div>
 				<div id="nav">
-					<a href="#!/page-home" class="nav-btn nav-btn-home nav-current">Home</a>
-					<!--
-					<div class="nav-btn nav-btn-services">Services</div>
-					-->
-					<div class="nav-btn nav-btn-solutions">
+					<a href="#!/page-home" class="nav-btn nav-btn-home nav-current">Home</a><!--
+					--><div class="nav-btn nav-btn-solutions">
 						<span>Solutions</span>
 						<ul class="fbalbums-menu-solutions">
             <!--
@@ -1029,11 +1040,11 @@ margin: 265px auto -50px;
 							</li>
               -->
 						</ul>
-					</div>
-					<a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a>
-					<a href="#!/page-about" class="nav-btn nav-btn-about">About</a>
-					<a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a>
-          <a href="https://www.facebook.com/KuantanIronwork" target="_blank" class="contact-facebook-button" title="Facebook"><img src="contents/images/8d2c2a4846503b9067e2fd2f590445c2.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
+					</div><!--
+					--><a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a><!--
+					--><a href="#!/page-about" class="nav-btn nav-btn-about">About</a><!--
+					--><a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a><!--
+          --><a href="https://www.facebook.com/KuantanIronwork" target="_blank" class="contact-facebook-button" title="Facebook"><img src="contents/images/8d2c2a4846503b9067e2fd2f590445c2.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
 				</div>
 				<div class="clear"></div>
 			</div>
