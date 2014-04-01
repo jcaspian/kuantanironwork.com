@@ -686,8 +686,8 @@ margin: 265px auto -50px;
                 var photo = album.photos[j];
                 var photoBox = $('<a>').prop('href', 'https://www.facebook.com/photo.php?fbid=' + photo.id).prop('target', '_blank').addClass('page-imgs-box page-' + classSubname + '-imgs-box');
                 //var photoLink = $('<a>').prop('href', 'https://www.facebook.com/photo.php?fbid=' + photo.id).prop('target', '_blank');
-                var img = $('<img>').addClass('page-imgs').prop('alt', photo.name || classSubname).prop('src', photo.source);
-                var span = $('<span>').append(photo.name || classSubname);
+                var img = $('<img>').addClass('page-imgs').prop('alt', photo.name || ''/*classSubname*/).prop('src', photo.source);
+                var span = $('<span>').append(photo.name || ''/*classSubname*/);
                 
                 if (j % 2 == 0) {
                   contentPageImgContain1.append(
