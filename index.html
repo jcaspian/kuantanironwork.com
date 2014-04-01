@@ -568,12 +568,12 @@ margin: 265px auto -50px;
                 for (var i = 0; i < albums.length; i++) {
                   var album = albums[i];
                   if (app.facebook.gallery.skipAlbum.indexOf(album.id) != -1) {
-                    console.log('skip', album.name);
+                    //console.log('skip', album.name);
                     albums.splice(i, 1);
                     i--;
                   }
                 }
-                console.log(albums);
+                //console.log(albums);
                 app.facebook.gallery.albums = albums.sort(app.facebook.gallery.sortByCreatedTimeAscending);
                 app.facebook.gallery.getPhotos();
               }
@@ -639,7 +639,7 @@ margin: 265px auto -50px;
             for (var i = 0, ilen = this.albums.length; i < ilen; i++) {
               // Navigation > Solutions = Albums
               var album = this.albums[i];
-              var classSubname = (album.name).toLowerCase().replace(/ - /g, ' ').replace(/ /g, '-');
+              var classSubname = (album.name).toLowerCase().replace(/&/g, 'and').replace(/ - /g, ' ').replace(/ /g, '-');
               var navLi = $('<li>');
               var navA = $('<a>')
                 .append(album.name)
@@ -780,7 +780,7 @@ margin: 265px auto -50px;
         
         var navProductsUl = $('.fbalbums-menu-our-products');
         var products = navProductsUl.data('products');
-        console.log(products);
+        //console.log(products);
         
         if (solutions instanceof Array) {
           if (solutions.indexOf(param) != -1) {
@@ -830,7 +830,7 @@ margin: 265px auto -50px;
 					sortFloatTop('page-sub-contractors');
         */
         app.param = param;
-        //sortFloatTop(param);
+        sortFloatTop(param);
 			}
 			$(window).on('hashchange', function () {
 				loadPage();
@@ -1007,7 +1007,7 @@ margin: 265px auto -50px;
         sortFloatTop(app.param);
 			});
 			function sortFloatTop(name) {
-        //console.log('sortFloatTop', name);
+        console.log('sortFloatTop', name);
 				var toRight = 0, toLeft = 0, move = 0, moveLimit = 2;
 				
 				app.int || (app.int = {});
