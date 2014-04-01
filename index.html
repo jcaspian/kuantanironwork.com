@@ -514,6 +514,29 @@ margin: 265px auto -50px;
       .contact-facebook-button-small {
         margin-top: -8px;
       }
+      .contact-left {
+        float: left;
+      }
+      .contact-right {
+        float: right;
+      }
+      .contact-form {
+        margin-top: 50px;
+      }
+      .contact-form label {
+        font-weight: bold;
+        line-height: 20px;
+        margin-top: 5px;
+        display: block;
+      }
+      .contact-form label span {
+        font-weight: normal;
+        font-size: 13px;
+        color: #f00;
+      }
+      .contact-form input[type=text] {
+        width: 400px;
+      }
 		</style>
 		<script>
 			var app = {};
@@ -1461,7 +1484,7 @@ margin: 265px auto -50px;
           <div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;margin-top: 40px;">Do You Know?</div>
           <div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
             <img src="contents/images/about/Eiffel_Tower.jpg" alt="" style="width:300px;margin: 0 20px 20px 0;border: 1px solid #ccc;box-shadow: rgba(0,0,0,.5) 0 0 5px;float: left;" />
-            The Eiffel Tower isconstructed from puddled iron,a form of wrought iron.
+            The Eiffel Tower is constructed from puddled iron,a form of wrought iron.
             Wrought iron has been used for many countries and it is the "iron" that
             is referred to throughout the western history.
             <div class="clear"></div>
@@ -1471,66 +1494,153 @@ margin: 265px auto -50px;
 				<div class="pages page-contact page-hide">
 					<div style="font: normal normal bold 42px/1.1em arial, helvetica, sans-serif;">Contact</div>
 					<div style="font: normal normal normal 16px/1.3em play, sans-serif;text-align: justify;padding-top: 40px;">
-						<iframe style="margin: 0 auto 30px auto;display: block;width: 800px;" width="800" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=&amp;daddr=Jalan+Teluk+Sisek&amp;hl=en&amp;geocode=FY41OgAdVsQoBg&amp;sll=3.813889,103.334398&amp;sspn=0.006851,0.009645&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=3.81497,103.333797&amp;spn=0.003747,0.008583&amp;z=17&amp;output=embed"></iframe>
-						<!--
-						<br />
-						<small>
-							<a target="_blank" href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=&amp;daddr=Jalan+Teluk+Sisek&amp;hl=en&amp;geocode=FY41OgAdVsQoBg&amp;sll=3.813889,103.334398&amp;sspn=0.006851,0.009645&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=3.81497,103.333797&amp;spn=0.003747,0.008583&amp;z=17" style="color:#0000FF;text-align:left">
-								View Larger Map
-							</a>
-						</small>
-						-->
-						<div style="width:600px;margin: 0 auto;">
-							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
-								Address
-							</div>
-							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
-                <strong>Show Room:</strong><br>
-								A2596, Ground Floor, Jalan Teluk Sisek, Taman Ruby, 25000, Kuantan, Pahang Darul Makmur.
-                <br>
-                <strong>Factory:</strong><br>
-                No. 6, Jalan IM 14/6, Kawasan Industri Ringan, Sektor 3, Indera Mahkota, 25200 Kuantan, Pahang Darul Makmur.
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div style="width:600px;margin: 0 auto;">
-							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
-								Tel
-							</div>
-							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
-								+609-568 3928
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div style="width:600px;margin: 0 auto;">
-							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
-								Fax
-							</div>
-							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
-								+609-568 3928
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div style="width:600px;margin: 0 auto;">
-							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
-								Mobile Phone
-							</div>
-							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
-								+6013-986 1118
-                <br>
-                +6016-923 1033
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div style="width:600px;margin: 0 auto;">
-							<div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
-								Email
-							</div>
-							<div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
-								<a href="mailto:kuantanironwork@hotmail.com">kuantanironwork@hotmail.com</a>
-							</div>
-							<div class="clear"></div>
-						</div>
+            <div class="contact-left">
+              <h2>Show Room</h2>
+              <iframe style="margin: 20px auto 30px auto;display: block;width: 450px;" width="800" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=&amp;daddr=Jalan+Teluk+Sisek&amp;hl=en&amp;geocode=FY41OgAdVsQoBg&amp;sll=3.813889,103.334398&amp;sspn=0.006851,0.009645&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=3.81497,103.333797&amp;spn=0.003747,0.008583&amp;z=17&amp;output=embed"></iframe>
+              <div style="width:450px;margin: 0 auto;">
+                <div style="width: 80px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Address
+                </div>
+                <div style="width: 300px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  A2596, Ground Floor, Jalan Teluk Sisek, Taman Ruby, 25000, Kuantan, Pahang Darul Makmur.
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="contact-right">
+              <h2>Factory</h2>
+              <iframe style="margin: 20px auto 30px auto;display: block;width: 450px;" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=no+6+Indera+Mahkota+kuantan+25200+jalan+IM+14%2F6&amp;aq=&amp;sll=3.830822,103.277008&amp;sspn=0.015265,0.008647&amp;ie=UTF8&amp;hq=&amp;hnear=6+Jalan+Im+14%2F6,+Indera+Mahkota+Industrial+Area,+25200+Kuantan,+Pahang,+Malaysia&amp;ll=3.830813,103.276999&amp;spn=0.015865,0.026157&amp;t=m&amp;z=14&amp;output=embed"></iframe>
+              <div style="width:450px;margin: 0 auto;">
+                <div style="width: 80px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Address
+                </div>
+                <div style="width: 300px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  No. 6, Jalan IM 14/6, Kawasan Industri Ringan, Sektor 3, Indera Mahkota, 25200 Kuantan, Pahang Darul Makmur.
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="contact-right" style="margin-top:50px;">
+              <div style="width:500px;margin: 20px auto 0;">
+                <div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Tel
+                </div>
+                <div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  +609-568 3928
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div style="width:500px;margin: 0 auto;">
+                <div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Fax
+                </div>
+                <div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  +609-568 3928
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div style="width:500px;margin: 0 auto;">
+                <div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Mobile Phone
+                </div>
+                <div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  +6013-986 1118
+                  <br>
+                  +6016-923 1033
+                </div>
+                <div class="clear"></div>
+              </div>
+              <div style="width:500px;margin: 0 auto;">
+                <div style="width: 200px;text-align:right;float:left;margin:0 10px 0 25px;font-weight: bold;">
+                  Email
+                </div>
+                <div style="width: 200px;text-align:left;float:left;margin:0 25px 0 10px;">
+                  <!--
+                  <a href="mailto:kuantanironwork@hotmail.com">kuantanironwork@hotmail.com</a>
+                  -->
+                  <a href="mailto:info@kuantanironwork.com">info@kuantanironwork.com</a>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <form class="contact-form" method="post" action="http://jcaspian.tk/kuantanironwork.com/html_form_send.php">
+              <h2>Send Us Your Enquiry</h2>
+              <table width="450px" style="margin-top: 20px;">
+                <tr>
+                  <td valign="top">
+                    <label for="first_name">FIRST NAME: <span class="red">(REQUIRED)</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <input  type="text" name="first_name" maxlength="50" size="30" class="textBox" />
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <label for="last_name">LAST NAME: <span class="red">(REQUIRED)</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <input  type="text" name="last_name" maxlength="50" size="30" class="textBox" />
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <label for="email">EMAIL ADDRESS: <span class="red">(REQUIRED)</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <input  type="text" name="email" maxlength="80" size="30" class="textBox" />
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <label for="telephone">CONTACT NUMBER:</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <input  type="text" name="telephone" maxlength="30" size="30" class="textBox" />
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <br>
+                    <br>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <label for="comments">TITLE: <span class="red">(REQUIRED)</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <input  type="text" name="title" maxlength="30" size="30" class="textBox"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <label for="comments">MESSAGE: <span class="red">(REQUIRED)</span></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <textarea  name="comments" maxlength="1000" cols="25" rows="6" class="textBox" style="width: 400px;"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align:center">
+                    <input type="submit" value="Submit" class="button" />
+                    <input type="reset" name="reset" value="Reset" class="button" />
+                  </td>
+                </tr>
+              </table>
+            </form>
 					</div>
 				</div>
 				<div class="push"></div>
