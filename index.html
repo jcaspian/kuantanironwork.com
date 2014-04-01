@@ -147,7 +147,7 @@
 					
 				}
         .nav-btn-solutions span {
-          max-width: 140px;
+          max-width: 120px;
           text-overflow: ellipsis;
           display: inline-block;
           overflow: hidden;
@@ -165,7 +165,6 @@
 					margin: 0;
 					visibility: hidden;
 					opacity: 0;
-					transition: all .5s ease;
 				}
 				#nav ul li {
 					margin: 1px 0;
@@ -192,6 +191,7 @@
 				.nav-btn:hover ul {
 					visibility: visible!important;
 					opacity: 1!important;
+          transition: all .5s ease;
 				}
 			#content {
 				position: relative;
@@ -591,6 +591,8 @@ margin: 265px auto -50px;
             }
           },
           bindData: function () {
+            var keywordSolutions = 'Solutions -';
+            var keywordProducts = 'Products -';
             var tabs = [
               '281910551976511',  // Our Products
             ];
@@ -598,9 +600,13 @@ margin: 265px auto -50px;
             if ($.active > 1) {
               return;
             }
-            var navUl = $('.fbalbums-menu-solutions');
-            var navParent = navUl.parent();
-            navUl = navUl.detach();
+            var navSolutionsUl = $('.fbalbums-menu-solutions');
+            var navSolutionsParent = navSolutionsUl.parent();
+            navSolutionsUl = navSolutionsUl.detach();
+            
+            var navProductsUl = $('.fbalbums-menu-our-products');
+            var navProductsParent = navProductsUl.parent();
+            navProductsUl = navProductsUl.detach();
             
             var contentDiv = $('#content');
             var contentParent = contentDiv.parent();
@@ -609,7 +615,7 @@ margin: 265px auto -50px;
             for (var i = 0, ilen = this.albums.length; i < ilen; i++) {
               // Navigation > Solutions = Albums
               var album = this.albums[i];
-              var classSubname = (album.name).toLowerCase().replace(/ /g, '-');
+              var classSubname = (album.name).toLowerCase().replace(/ - /g, ' ').replace(/ /g, '-');
               var navLi = $('<li>');
               var navA = $('<a>')
                 .append(album.name)
@@ -617,17 +623,24 @@ margin: 265px auto -50px;
                 .addClass(
                 ['nav-btn sub-nav nav-btn-page-', classSubname].join('')
               );
-              var navUlNames = navUl.data('solutions') || [];
+              var navSolutionsUlNames = navSolutionsUl.data('solutions') || [];
+              var navProductsUlNames = navProductsUl.data('products') || [];
               
-              if (tabs.indexOf(album.id) == -1) {
-                navUlNames.push('page-' + classSubname);
-                navUl.append(
+              if (album.name.indexOf(keywordSolutions) != -1) {
+                navSolutionsUlNames.push('page-' + classSubname);
+                navSolutionsUl.append(
                   navLi.append(navA)
-                ).data('solutions', navUlNames);
-              } else {
+                ).data('solutions', navSolutionsUlNames);
+              } else if (album.name.indexOf(keywordProducts) != -1) {
+                /*
                 var tabA = $('<a>').prop('href', '#!/page-' + classSubname).addClass('nav-btn nav-btn-our-products').append(album.name);
                 //$('#nav').append(tabA);
                 tabA.insertAfter($('.nav-btn-solutions'));
+                */
+                navProductsUlNames.push('page-' + classSubname);
+                navProductsUl.append(
+                  navLi.append(navA)
+                ).data('products', navProductsUlNames);
               }
               
               var div = $('<div>');
@@ -672,7 +685,8 @@ margin: 265px auto -50px;
                   .append(contentPageClear)
               );
             }
-            navParent.append(navUl);
+            navSolutionsParent.append(navSolutionsUl);
+            navProductsParent.append(navProductsUl);
             contentParent.prepend(contentDiv);
             loadPage();
           },
@@ -737,8 +751,12 @@ margin: 265px auto -50px;
 				}
         */
         //console.log(solutions instanceof Array);
-        var navUl = $('.fbalbums-menu-solutions');
-        var solutions = navUl.data('solutions');
+        var navSolutionsUl = $('.fbalbums-menu-solutions');
+        var solutions = navSolutionsUl.data('solutions');
+        
+        var navProductsUl = $('.fbalbums-menu-our-products');
+        var products = navProductsUl.data('products');
+        console.log(products);
         
         if (solutions instanceof Array) {
           if (solutions.indexOf(param) != -1) {
@@ -746,24 +764,34 @@ margin: 265px auto -50px;
             $('.nav-btn-solutions').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
             $('.nav-btn-' + param).addClass('hide');
           } else {
-            if (param == 'page-home') {
-              $('.nav-btn-home').addClass('nav-current');
-            }
-            if (param == 'page-our-products') {
-              $('.nav-btn-our-products').addClass('nav-current');
-            }
-            if (param == 'page-other-services') {
-              $('.nav-btn-other-services').addClass('nav-current');
-            }
-            if (param == 'page-about') {
-              $('.nav-btn-about').addClass('nav-current');
-            }
-            if (param == 'page-contact') {
-              $('.nav-btn-contact').addClass('nav-current');
-            }
             $('.nav-btn-solutions span').empty().append('Solutions');
           }
         }
+        if (products instanceof Array) {
+          if (products.indexOf(param) != -1) {
+            $('.nav-btn-our-products span').empty().append($('.nav-btn-' + param).html());
+            $('.nav-btn-our-products').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
+            $('.nav-btn-' + param).addClass('hide');
+          } else {
+            $('.nav-btn-our-products span').empty().append('Our Products');
+          }
+        }
+        if (param == 'page-home') {
+          $('.nav-btn-home').addClass('nav-current');
+        }
+        if (param == 'page-our-products') {
+          $('.nav-btn-our-products').addClass('nav-current');
+        }
+        if (param == 'page-other-services') {
+          $('.nav-btn-other-services').addClass('nav-current');
+        }
+        if (param == 'page-about') {
+          $('.nav-btn-about').addClass('nav-current');
+        }
+        if (param == 'page-contact') {
+          $('.nav-btn-contact').addClass('nav-current');
+        }
+        
 				app.int = {};
         /*
 				if (param == 'page-wrought-iron-gate')
@@ -1021,26 +1049,12 @@ margin: 265px auto -50px;
 					<a href="#!/page-home" class="nav-btn nav-btn-home nav-current">Home</a><!--
 					--><div class="nav-btn nav-btn-solutions">
 						<span>Solutions</span>
-						<ul class="fbalbums-menu-solutions">
-            <!--
-							<li>
-								<a href="#!/page-wrought-iron-gate" class="nav-btn sub-nav nav-btn-page-wrought-iron-gate">Wrought Iron Gate</a>
-							</li>
-							<li>
-								<a href="#!/page-staircase-railing" class="nav-btn sub-nav nav-btn-page-staircase-railing">Staircase Railing</a>
-							</li>
-							<li>
-								<a href="#!/page-grills" class="nav-btn sub-nav nav-btn-page-grills">Grills</a>
-							</li>
-              <li>
-								<a href="#!/page-fences" class="nav-btn sub-nav nav-btn-page-fences">Fences</a>
-							</li>
-              <li>
-								<a href="#!/page-sub-contractors" class="nav-btn sub-nav nav-btn-page-sub-contractors">Sub Contractors</a>
-							</li>
-              -->
-						</ul>
+						<ul class="fbalbums-menu-solutions"></ul>
 					</div><!--
+          --><div class="nav-btn nav-btn-our-products">
+            <span>Our Products</span>
+            <ul class="fbalbums-menu-our-products"></ul>
+          </div><!--
 					--><a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a><!--
 					--><a href="#!/page-about" class="nav-btn nav-btn-about">About</a><!--
 					--><a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a><!--
