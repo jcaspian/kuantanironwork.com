@@ -639,7 +639,7 @@ margin: 265px auto -50px;
             for (var i = 0, ilen = this.albums.length; i < ilen; i++) {
               // Navigation > Solutions = Albums
               var album = this.albums[i];
-              var classSubname = (album.name).toLowerCase().replace(/&/g, 'and').replace(/ - /g, ' ').replace(/ /g, '-').replace(/[^a-z0-9]+$/gi, '');
+              var classSubname = (album.name).toLowerCase().replace(/&/g, 'and').replace(/ - /g, ' ').replace(/ /g, '-').replace(/[^a-z0-9-]/gi, '');
               var navLi = $('<li>');
               var navA = $('<a>')
                 .append(album.name)
