@@ -100,11 +100,11 @@
 				margin-top: 23px;
 			}
 			#hero .name {
-				font-size: 25px;
+				font-size: 24px;
 				font-weight: bold;
 			}
 			#hero .slogan {
-				font-size: 18.5px;
+				font-size: 17.5px;
 				line-height: 12px;
 				font-family: play, sans-serif;
 			}
@@ -147,7 +147,8 @@
 					
 				}
         .nav-btn-our-products span,
-        .nav-btn-solutions span {
+        .nav-btn-solutions span,
+        .nav-btn-projects span {
           max-width: 120px;
           text-overflow: ellipsis;
           display: inline-block;
@@ -617,6 +618,7 @@ margin: 265px auto -50px;
           bindData: function () {
             var keywordSolutions = 'Solutions -';
             var keywordProducts = 'Products -';
+            var keywordProjects = 'Projects -';
             var tabs = [
               '281910551976511',  // Our Products
             ];
@@ -631,6 +633,10 @@ margin: 265px auto -50px;
             var navProductsUl = $('.fbalbums-menu-our-products');
             var navProductsParent = navProductsUl.parent();
             navProductsUl = navProductsUl.detach();
+            
+            var navProjectsUl = $('.fbalbums-menu-projects');
+            var navProjectsParent = navProjectsUl.parent();
+            navProjectsUl = navProjectsUl.detach();
             
             var contentDiv = $('#content');
             var contentParent = contentDiv.parent();
@@ -649,6 +655,7 @@ margin: 265px auto -50px;
               );
               var navSolutionsUlNames = navSolutionsUl.data('solutions') || [];
               var navProductsUlNames = navProductsUl.data('products') || [];
+              var navProjectsUlNames = navProjectsUl.data('projects') || [];
               
               if (album.name.indexOf(keywordSolutions) != -1) {
                 navSolutionsUlNames.push('page-' + classSubname);
@@ -656,15 +663,15 @@ margin: 265px auto -50px;
                   navLi.append(navA)
                 ).data('solutions', navSolutionsUlNames);
               } else if (album.name.indexOf(keywordProducts) != -1) {
-                /*
-                var tabA = $('<a>').prop('href', '#!/page-' + classSubname).addClass('nav-btn nav-btn-our-products').append(album.name);
-                //$('#nav').append(tabA);
-                tabA.insertAfter($('.nav-btn-solutions'));
-                */
                 navProductsUlNames.push('page-' + classSubname);
                 navProductsUl.append(
                   navLi.append(navA)
                 ).data('products', navProductsUlNames);
+              } else if (album.name.indexOf(keywordProjects) != -1) {
+                navProjectsUlNames.push('page-' + classSubname);
+                navProjectsUl.append(
+                  navLi.append(navA)
+                ).data('projects', navProjectsUlNames);
               }
               
               var div = $('<div>');
@@ -711,6 +718,7 @@ margin: 265px auto -50px;
             }
             navSolutionsParent.append(navSolutionsUl);
             navProductsParent.append(navProductsUl);
+            navProjectsParent.append(navProjectsUl);
             contentParent.prepend(contentDiv);
             loadPage();
           },
@@ -749,42 +757,20 @@ margin: 265px auto -50px;
 				}, 1000);
 				$("html, body").animate({ scrollTop: "0px" }, {duration: 1000});
 				$('.nav-btn').removeClass('hide nav-current');
-        /*
-				if (param == 'page-wrought-iron-gate' 
-					|| param == 'page-staircase-railing'
-					|| param == 'page-grills'
-          || param == 'page-fences'
-          || param == 'page-sub-contractors') {
-					$('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html());
-					$('.nav-btn-solutions').addClass('nav-current');
-					$('.nav-btn-' + param).addClass('hide');
-				} else {
-					if (param == 'page-home') {
-						$('.nav-btn-home').addClass('nav-current');
-					}
-          if (param == 'page-other-services') {
-						$('.nav-btn-other-services').addClass('nav-current');
-					}
-					if (param == 'page-about') {
-						$('.nav-btn-about').addClass('nav-current');
-					}
-					if (param == 'page-contact') {
-						$('.nav-btn-contact').addClass('nav-current');
-					}
-					$('.nav-btn-solutions span').empty().append('Solutions');
-				}
-        */
-        //console.log(solutions instanceof Array);
+        
         var navSolutionsUl = $('.fbalbums-menu-solutions');
         var solutions = navSolutionsUl.data('solutions');
         
         var navProductsUl = $('.fbalbums-menu-our-products');
         var products = navProductsUl.data('products');
-        //console.log(products);
+        
+        var navProjectsUl = $('.fbalbums-menu-projects');
+        var projects = navProjectsUl.data('projects');
         
         if (solutions instanceof Array) {
           if (solutions.indexOf(param) != -1) {
-            $('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html());
+            //$('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html());
+            $('.nav-btn-solutions span').empty().append($('.nav-btn-' + param).html().replace('Solutions - ', ''));
             $('.nav-btn-solutions').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
             $('.nav-btn-' + param).addClass('hide');
           } else {
@@ -793,11 +779,22 @@ margin: 265px auto -50px;
         }
         if (products instanceof Array) {
           if (products.indexOf(param) != -1) {
-            $('.nav-btn-our-products span').empty().append($('.nav-btn-' + param).html());
+            //$('.nav-btn-our-products span').empty().append($('.nav-btn-' + param).html());
+            $('.nav-btn-our-products span').empty().append($('.nav-btn-' + param).html().replace('Products - ', ''));
             $('.nav-btn-our-products').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
             $('.nav-btn-' + param).addClass('hide');
           } else {
             $('.nav-btn-our-products span').empty().append('Our Products');
+          }
+        }
+        if (projects instanceof Array) {
+          if (projects.indexOf(param) != -1) {
+            //$('.nav-btn-projects span').empty().append($('.nav-btn-' + param).html());
+            $('.nav-btn-projects span').empty().append($('.nav-btn-' + param).html().replace('Projects - ', ''));
+            $('.nav-btn-projects').addClass('nav-current').prop('title', $('.nav-btn-' + param).html());
+            $('.nav-btn-' + param).addClass('hide');
+          } else {
+            $('.nav-btn-projects span').empty().append('Projects');
           }
         }
         if (param == 'page-home') {
@@ -805,6 +802,9 @@ margin: 265px auto -50px;
         }
         if (param == 'page-our-products') {
           $('.nav-btn-our-products').addClass('nav-current');
+        }
+        if (param == 'page-projects') {
+          $('.nav-btn-projects').addClass('nav-current');
         }
         if (param == 'page-other-services') {
           $('.nav-btn-other-services').addClass('nav-current');
@@ -817,18 +817,7 @@ margin: 265px auto -50px;
         }
         
 				app.int = {};
-        /*
-				if (param == 'page-wrought-iron-gate')
-					sortFloatTop('page-wrought-iron-gate');
-				if (param == 'page-staircase-railing')
-					sortFloatTop('page-staircase-railing');
-        if (param == 'page-grills')
-					sortFloatTop('page-grills');
-				if (param == 'page-fences')
-					sortFloatTop('page-fences');
-        if (param == 'page-sub-contractors')
-					sortFloatTop('page-sub-contractors');
-        */
+        
         app.param = param;
         sortFloatTop(param);
 			}
@@ -858,103 +847,7 @@ margin: 265px auto -50px;
 				for (var i = 0, ilen = ele_arr.length; i < ilen; i++) {
 					$(ele_arr[i]).addClass('hwaccel');
 				}
-				/*
-				var page_wrought_iron_gate_imgs1 = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.png','8.jpg','9.png','10.png',
-					'11.png','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg',
-					'21.jpg','22.jpg','23.jpg','24.jpg','25.jpg','26.jpg','27.jpg','28.jpg','29.jpg','30.jpg',
-					'31.jpg','32.jpg','33.jpg','34.jpg','35.jpg','36.jpg','37.jpg'
-				];
 				
-				for (var i = 0, ilen = page_wrought_iron_gate_imgs1.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Wrought Iron Gate').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/wrought-iron-gate/'+page_wrought_iron_gate_imgs1[i]);
-					
-					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Wrought Iron Gate'));
-					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				var page_wrought_iron_gate_imgs2 = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.png','6.png','7.png','8.png','9.png','10.jpg',
-					'11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg',
-					'21.jpg','22.jpg','23.jpg','24.jpg'
-				];
-				
-				for (var i = 0, ilen = page_wrought_iron_gate_imgs2.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Metal Door').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/door-metal/'+page_wrought_iron_gate_imgs2[i]);
-					
-					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Metal Door'));
-					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				var page_wrought_iron_gate_imgs3 = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg'
-				];
-				
-				for (var i = 0, ilen = page_wrought_iron_gate_imgs3.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Fencing').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/fencing/'+page_wrought_iron_gate_imgs3[i]);
-					
-					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Fencing'));
-					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				var page_wrought_iron_gate_imgs4 = [
-					'1.jpg','2.jpg','3.jpg'
-				];
-				
-				for (var i = 0, ilen = page_wrought_iron_gate_imgs4.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Balcony Railing').addClass('page-wrought-iron-gate-imgs').prop('src', 'contents/images/balcony-railing/'+page_wrought_iron_gate_imgs4[i]);
-					
-					var box = $('<div>').addClass('page-wrought-iron-gate-imgs-box').append(img).append($('<span>').append('Balcony Railing'));
-					$('.page-wrought-iron-gate-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				var page_staircase_railing_imgs = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg'
-				];
-				
-				for (var i = 0, ilen = page_staircase_railing_imgs.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Staircase Railing').addClass('page-staircase-railing-imgs').prop('src', 'contents/images/staircase-railing/'+page_staircase_railing_imgs[i]);
-					
-					var box = $('<div>').addClass('page-staircase-railing-imgs-box').append(img).append($('<span>').append('Staircase Railing'));
-					$('.page-staircase-railing-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				var page_grills_imgs = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg',
-					'11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg','20.jpg'
-				];
-				
-				for (var i = 0, ilen = page_grills_imgs.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Grills').addClass('page-grills-imgs').prop('src', 'contents/images/grills/'+page_grills_imgs[i]);
-					
-					var box = $('<div>').addClass('page-grills-imgs-box').append(img).append($('<span>').append('Grills'))
-					$('.page-grills-img-contain' + ((i % 2) + 1)).append(box);
-				}
-        
-        var page_fences_imgs = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg'
-				];
-				
-				for (var i = 0, ilen = page_fences_imgs.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Fences').addClass('page-fences-imgs').prop('src', 'contents/images/fences/'+page_fences_imgs[i]);
-					
-					var box = $('<div>').addClass('page-fences-imgs-box').append(img).append($('<span>').append('Fences'))
-					$('.page-fences-img-contain' + ((i % 2) + 1)).append(box);
-				}
-        
-        var page_sub_contractors_imgs = [
-					'1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg'
-				];
-				
-				for (var i = 0, ilen = page_sub_contractors_imgs.length; i < ilen; i++) {
-					var img = $('<img>').prop('alt', 'Sub Contractors').addClass('page-sub-contractors-imgs').prop('src', 'contents/images/sub-contractors/'+page_sub_contractors_imgs[i]);
-					
-					var box = $('<div>').addClass('page-sub-contractors-imgs-box').append(img).append($('<span>').append('Sub Contractors'))
-					$('.page-sub-contractors-img-contain' + ((i % 2) + 1)).append(box);
-				}
-				
-				
-				*/
 				var stickyNavTop = 40;//$('#header').offset().top;
 				
 				var stickyNav = function () {
@@ -986,24 +879,7 @@ margin: 265px auto -50px;
 				});
 			});
 			$(window).load(function () {
-				/*
-				var param = location.hash.substring(1);
-				//console.log('p', param);
 				
-				if (!!param) {
-					param = param.substring(2);
-				}
-				console.log(param);
-				if (param == 'page-wrought-iron-gate')
-					sortFloatTop('page-wrought-iron-gate');
-				if (param == 'page-stiarcase-railing')
-					sortFloatTop('page-staircase-railing');
-				if (param == 'page-awning')
-					sortFloatTop('page-awning');
-				//sortFloatTop('page-staircase-railing');
-				//sortFloatTop('page-awning');
-				*/
-				//loadPage();
         sortFloatTop(app.param);
 			});
 			function sortFloatTop(name) {
@@ -1079,7 +955,11 @@ margin: 265px auto -50px;
             <span>Our Products</span>
             <ul class="fbalbums-menu-our-products"></ul>
           </div><!--
-					--><a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a><!--
+					--><div class="nav-btn nav-btn-projects">
+            <span>Projects</span>
+            <ul class="fbalbums-menu-projects"></ul>
+          </div><!--
+          --><a href="#!/page-other-services" class="nav-btn nav-btn-other-services">Other Services</a><!--
 					--><a href="#!/page-about" class="nav-btn nav-btn-about">About</a><!--
 					--><a href="#!/page-contact" class="nav-btn nav-btn-contact">Contact</a><!--
           --><a href="https://www.facebook.com/KuantanIronwork" target="_blank" class="contact-facebook-button" title="Facebook"><img src="contents/images/8d2c2a4846503b9067e2fd2f590445c2.wix_mp_srz_24_24_85_22_0.50_1.20_0.00_wix_mp_srz" alt="Facebook" class="social-icon" /></a>
